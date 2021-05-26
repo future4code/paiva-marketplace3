@@ -9,7 +9,7 @@ function App() {
         <div>
         <AppContainer />
         <br/>
-        <Carrinho/>
+        
 
         </div>
 	)
