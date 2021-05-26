@@ -27,15 +27,13 @@ export default class App extends React.Component{
 		}
 	}	*/
 	render () {
-
-	return (
-		<div>
-        <AppContainer />
-		<Body />
-		</div>
-	)
-}
-
+	  return (
+        <div>
+          <AppContainer />
+          <br/>
+        </div>
+	  )
+  }
 }
 
 
