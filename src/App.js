@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppContainer } from './components/AppContainer'
-import { Body } from './components/Body/Body'
+import { Body } from './components/Body'
 
 
 export default class App extends React.Component{

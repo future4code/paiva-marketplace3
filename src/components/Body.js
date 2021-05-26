@@ -11,21 +11,10 @@ import foto from "../../img/people.png";
   align-items: center;
 `;*/
 
-const Body = () => {
-  return (
-    <div>
-      <img src={foto} alt="people"/>
-    </div>
-  );
-};
+
 
 
 export class Body extends Component {
-
-
-
-
-
 
   render() {
     return (
