@@ -2,42 +2,91 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import carrinho from '../imagens/carrinho.png'
 
-const Carro = styled.header`
+const BodyCarrinho = styled.body`
 display:flex;
 justify-content:space-around;
-img{
-    width:5vw;
-    height:5vw;
-    }`
+margin:2%;`
 
-const Section = styled.section`
-display:flex;`
+const CardProposta = styled.div`
+display:grid;
+justify-content:space-around;
+box-shadow:2px 5px 5px;
+width:40vw;
+height:50vh;
+`
+const CardPagamento = styled.div`
+display:grid;
+
+width:20vw;
+height:50vh;
+`
+const Resumo = styled.div`
+display:grid;
+justify-items:space-around;
+padding:0%;
+margin:0%;`
+
+const Botao = styled.div`
+display:grid;
+margin:10%;
+justify-content:right;
+`
+const Voltar = styled.div`
+text-align:center;
+border:2px solid;
+width: 8vw;
+margin:auto;
+`
+const Desistir = styled.div`
+border:2px solid;
+text-align:center;
+width: 8vw;
+margin:auto;
+`
+
+
 
 export default class Carrinho extends Component {
     render() {
         return (
-            <div><Carro>
-                <Section>
-                <h1>Carrinho</h1>                
-                <img src = {carrinho}/>
-                </Section>
-                <button>Voltar</button>
-                
-                </Carro>
-                <hr />
-                <div id="card-proposta">
-                    <h3>Revise a Proposta:</h3>
-                </div>
-                <hr />
-                <div id="card-forma-pgto">
-                    <h3>Revise seu Pagamento:</h3>
-                    <p>Valor total:</p>
-                    <p>Forma de Pagamento:</p>
-                </div>
+            <div>
+                <BodyCarrinho>
+                    <header></header>
+                    <CardProposta>
 
-                <button>Contratar</button>
-                <button>Desistir</button>
+                        <h3>Revise a Proposta:</h3>
+                        <Resumo>
+                            <h6>Serviço:</h6>
+                            <h6>Descrição:</h6>
+                            <h6>Valor:</h6>
+                            <h6>Prazo:</h6>
+                        </Resumo>
 
+                    </CardProposta>
+
+
+
+                    <CardPagamento>
+                        <h3>Método de Pagamento</h3>
+                        <select>
+                            <option>escolha</option>
+                            <option>Cartão Débito</option>
+                            <option>Boleto</option>
+                            <option>Pix</option>
+                            <option>Cartão Crédito</option>
+                        </select>
+                        <br></br>
+                        <h3>Valor Total</h3>
+                        <p>R$ 00,00</p>
+                        <button>Contratar</button>
+                    </CardPagamento>
+                </BodyCarrinho>
+
+                <Desistir>Desistir</Desistir>
+
+                <Botao>
+                    <Voltar>Voltar</Voltar>
+                </Botao>
             </div>
         )
     }
