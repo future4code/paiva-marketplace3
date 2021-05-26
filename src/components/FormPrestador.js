@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Section = styled.section`
   display: grid;
@@ -27,7 +28,48 @@ const CardServiços = styled.div`
 `;
 
 export default class FormPrestador extends React.Component {
-  state = {};
+  state = {
+    title: "",
+    description: "",
+    price: "",
+    paymentMethods: "",
+    dueDate: "",
+  };
+
+  changeInputValues = (e) => {
+    if (e.target.id === "pagamento") {
+      this.setState({ [e.target.name]: [e.target.value] });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+
+  };
+
+  createJob = (e) => {
+    const url = `https://labeninjas.herokuapp.com/jobs`;
+    const body = {
+      title: this.state.title,
+      description: this.state.description,
+      price: Number(this.state.price),
+      paymentMethods: this.state.paymentMethods,
+      dueDate: this.state.dueDate,
+    };
+    console.log(body)
+    axios
+      .post(url, body, {
+        headers: {
+          "Authorization": "76aaaa55-e50c-4e30-9afa-11699cef111a",
+        },
+      })
+      .then((res) => {
+        ;
+        this.setState({title: "", description: "", price: "", paymentMethods: "", dueDate: ""});
+      })
+      .catch((err) => {
+        console.log(err.message)
+        alert("")
+      });
+  };
 
   render() {
     return (
@@ -35,13 +77,31 @@ export default class FormPrestador extends React.Component {
         <CardCadastro>
           <h2>CADASTRO DE SERVIÇOS </h2>
 
-          <input placeholder="Serviço"></input>
-          <input placeholder="Descrição"></input>
-          <input placeholder="Valor"></input>
+          <input
+            placeholder="Serviço"
+            name="title"
+            value={this.state.title}
+            onChange={this.changeInputValues}
+          />
+          <input
+            placeholder="Descrição"
+            name="description"
+            value={this.state.description}
+            onChange={this.changeInputValues}
+          />
+          <input
+            type='number'
+            placeholder="Valor"
+            name="price"
+            value={this.state.price}
+            onChange={this.changeInputValues}
+          />
           <div>
             <select
               placeholder="Forma de pagamento"
-              name="Forma de Pagamento"
+              name="paymentMethods"
+              value={this.state.paymentMethods}
+              onChange={this.changeInputValues}
               id="pagamento"
             >
               <option>Forma de Pagamento</option>
@@ -50,9 +110,14 @@ export default class FormPrestador extends React.Component {
               <option value="Cartão de Crédito">Cartão de Crédito</option>
               <option value="Paypall">Paypall</option>
             </select>
-            <input placeholder="Prazo"></input>
+            <input
+              placeholder="Prazo"
+              name="dueDate"
+              value={this.state.dueDate}
+              onChange={this.changeInputValues}
+            />
           </div>
-          <button>Cadastrar serviços</button>
+          <button onClick={this.createJob}>Cadastrar serviços</button>
         </CardCadastro>
         <div>
           <CardServiços>
