@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-
+import { Contratante } from './components/Contratante';
 
 export class AppContainer extends Component {
   render() {
     return (
       <div>
-       <h3>i</h3> 
+       <Contratante />
       </div>
     )
   }
