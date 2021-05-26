@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import styled from "styled-components";
-import foto from "../../img/people.png";
+// import styled from "styled-components";
+import foto from "../img/peoples.png";
 
 /*const section = styled.section`
   display: grid;
@@ -20,13 +20,7 @@ const Body = () => {
 };
 
 
-export class Body extends Component {
-
-
-
-
-
-
+export default class Inicial extends Component {
   render() {
     return (
       <div>
@@ -53,11 +47,19 @@ export class Body extends Component {
         </section>
 
         <section className="botaoBody">
-          <Button variant="contained" color="primary">
+          <Button 
+            variant="contained" 
+            color="primary"
+            onClick={this.props.irParaPrestador}
+          >
             Prestador de serviços
           </Button>
           <br />
-          <Button variant="contained" color="primary">
+          <Button 
+            variant="contained" 
+            color="primary"
+            onClick={this.props.irParaContratante}
+          >
             Contratante
           </Button>
         </section>
