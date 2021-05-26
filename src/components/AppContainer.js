@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import FormPrestador from './FormPrestador'
 
 
 export class AppContainer extends Component {
   render() {
     return (
       <div>
-       <h3>i</h3> 
+        <FormPrestador />
       </div>
     )
   }

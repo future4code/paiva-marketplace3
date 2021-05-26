@@ -1,14 +1,19 @@
 import React from 'react'
 import { AppContainer } from './components/AppContainer';
 import { Contratante } from './components/Contratante';
+import Carrinho from './components/Carrinho';
+
 
 function App() {
 	return (
-		<div>
+        <div>
         <AppContainer />
+        <br/>
+        <Carrinho/>
+		<br/>
 		<Contratante />
-		
-		</div>
+
+        </div>
 	)
 }
 
