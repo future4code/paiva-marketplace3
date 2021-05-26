@@ -67,7 +67,7 @@ export default class FormPrestador extends React.Component {
       })
       .catch((err) => {
         console.log(err.message)
-        alert("")
+        alert(err.response.data.message)
       });
   };
 
