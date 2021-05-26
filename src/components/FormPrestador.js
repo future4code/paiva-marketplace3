@@ -62,7 +62,7 @@ export default class FormPrestador extends React.Component {
         },
       })
       .then((res) => {
-        ;
+        alert("Serviço cadastrado com sucesso!")
         this.setState({title: "", description: "", price: "", paymentMethods: "", dueDate: ""});
       })
       .catch((err) => {
@@ -111,7 +111,7 @@ export default class FormPrestador extends React.Component {
               <option value="Paypall">Paypall</option>
             </select>
             <input
-              placeholder="Prazo"
+              placeholder="Prazo (ano-mês-dia)"
               name="dueDate"
               value={this.state.dueDate}
               onChange={this.changeInputValues}
