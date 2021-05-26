@@ -1,18 +1,39 @@
-import React from 'react';
-import { AppContainer } from './components/AppContainer';
-import Carrinho from './components/Carrinho';
-import axios from 'axios';
+import React from 'react'
+import { AppContainer } from './components/AppContainer'
+import { Body } from './components/Body/Body'
 
 
-function App() {
-	return (
+export default class App extends React.Component{
+	state = {
+		pagina: ""
+	}
+
+	proximaPagina = () => {
+		if (this.state.pagina ===  ""){
+			this.setState({pagina: ""})
+		} else if (this.state.pagina === ""){
+			this.setState({pagina:""})
+		}
+	}
+
+/*	renderizandoPagina = () => {
+		switch(this.state.pagina){
+			case "":
+				return <""/>
+			case "":
+				return <""/>
+			default:
+
+		}
+	}	*/
+	render () {
+	  return (
         <div>
-        <AppContainer />
-        <br/>
-        
-
+          <AppContainer />
+          <br/>
         </div>
-	)
+	  )
+  }
 }
 
-export default App
+
