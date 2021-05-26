@@ -1,9 +1,14 @@
 import React from 'react'
-import { AppContainer } from './components/AppContainer'
+import { AppContainer } from './components/AppContainer';
+import { Contratante } from './components/Contratante';
 
 function App() {
 	return (
+		<div>
         <AppContainer />
+		<Contratante />
+		
+		</div>
 	)
 }
 
