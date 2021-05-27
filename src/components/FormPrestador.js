@@ -5,7 +5,8 @@ import axios from "axios";
 const Section = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 50px;
+  padding: 100px;
+  top: 15px;
   justify-items: center;
   align-items: center;
 `;
@@ -42,7 +43,6 @@ export default class FormPrestador extends React.Component {
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
-
   };
 
   createJob = (e) => {
@@ -54,20 +54,26 @@ export default class FormPrestador extends React.Component {
       paymentMethods: this.state.paymentMethods,
       dueDate: this.state.dueDate,
     };
-    console.log(body)
+    console.log(body);
     axios
       .post(url, body, {
         headers: {
-          "Authorization": "76aaaa55-e50c-4e30-9afa-11699cef111a",
+          Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a",
         },
       })
       .then((res) => {
-        alert("Serviço cadastrado com sucesso!")
-        this.setState({title: "", description: "", price: "", paymentMethods: "", dueDate: ""});
+        alert("Serviço cadastrado com sucesso!");
+        this.setState({
+          title: "",
+          description: "",
+          price: "",
+          paymentMethods: "",
+          dueDate: "",
+        });
       })
       .catch((err) => {
-        console.log(err.message)
-        alert(err.response.data.message)
+        console.log(err.message);
+        alert(err.response.data.message);
       });
   };
 
@@ -90,7 +96,7 @@ export default class FormPrestador extends React.Component {
             onChange={this.changeInputValues}
           />
           <input
-            type='number'
+            type="number"
             placeholder="Valor"
             name="price"
             value={this.state.price}
@@ -132,8 +138,6 @@ export default class FormPrestador extends React.Component {
 
             {/* retorna serviços cadastrados com botão de delete */}
           </CardServiços>
-
-          <button>Voltar</button>
         </div>
       </Section>
     );
