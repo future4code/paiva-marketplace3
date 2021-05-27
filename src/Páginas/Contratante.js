@@ -18,7 +18,7 @@ import Pintor from "../img/Pintor.jpeg";
 import Mecanico from "../img/Mecanico.png";
 import baba from "../img/baba.png";
 
-const Filtro  = styled.div`
+const Filtro = styled.div`
   margin: 10px;
   display: flex;
   padding: 10px;
@@ -154,45 +154,42 @@ export default class Contratante extends Component {
         </button>
         <div>
           <Icon>
-
             <Icon color="primary" aria-label="add to Build">
-              <BuildIcon/>
+              <BuildIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to Cake">
-              <CakeIcon/>
+              <CakeIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to FitnessCenter">
-              <FitnessCenterIcon/>
+              <FitnessCenterIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to LocalLaundryService">
-              <LocalLaundryServiceIcon/>
+              <LocalLaundryServiceIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to Laptop">
-              <LaptopIcon/>
+              <LaptopIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to Settings">
-              <SettingsIcon/>
+              <SettingsIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to Translate">
-              <TranslateIcon/>
+              <TranslateIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to LocalBar">
-              <LocalBarIcon/>
+              <LocalBarIcon />
             </Icon>
 
             <Icon color="primary" aria-label="add to CameraAlt">
-              <CameraAltIcon/>
+              <CameraAltIcon />
             </Icon>
-
           </Icon>
-
         </div>
 
         <div>
@@ -200,11 +197,11 @@ export default class Contratante extends Component {
             <h4>Filtro</h4>
 
             <p>Buscar por nome </p>
-            <input type="text" id="txtBuscar"/>
+            <input type="text" id="txtBuscar" />
 
             <p>Valor </p>
 
-            <input type="ranger" min="-10" max="10" step="0.01"/>
+            <input type="ranger" min="-10" max="10" step="0.01" />
 
             <span>Ordenações:</span>
             <select>
@@ -213,23 +210,20 @@ export default class Contratante extends Component {
               <option>Prazo 3 dias</option>
               <option>Prazo 3 dias</option>
               <option>Prazo 10 dias</option>
-
             </select>
           </Filtro>
-
         </div>
 
         <div>
-
           <Card1>
             <h4>Pintor de Obras</h4>
-            <img src={Pintor} alt="Pintor"/>
+            <img src={Pintor} alt="Pintor" />
             <h4>detalhes</h4>
             <p>
-              Realiza pintura em paredes internas e externas.
-              Prepara as superfícies antes de pintá-las, como
-              limpeza, aplicação de massa fina ou corrida e lixamento.
-              Aplica papel de parede e gesso para acabamento.
+              Realiza pintura em paredes internas e externas. Prepara as
+              superfícies antes de pintá-las, como limpeza, aplicação de massa
+              fina ou corrida e lixamento. Aplica papel de parede e gesso para
+              acabamento.
             </p>
             <p>R$ 400,00</p>
             <Button variant="contained" color="secondary">
@@ -239,12 +233,11 @@ export default class Contratante extends Component {
 
           <Card2>
             <h4>Montador</h4>
-            <img src={Montador} alt="Montador"/>
+            <img src={Montador} alt="Montador" />
             <h2>detalhes</h2>
             <p>
-              montagem e desmontagem de estruturas,
-              móveis, painéis,e demais equipamentos, nas
-              normas e procedimentos técnicos.
+              montagem e desmontagem de estruturas, móveis, painéis,e demais
+              equipamentos, nas normas e procedimentos técnicos.
             </p>
             <p>R$ 290,00</p>
             <Button variant="contained" color="secondary">
@@ -254,12 +247,12 @@ export default class Contratante extends Component {
 
           <Card3>
             <h4>Encanador</h4>
-            <img src={Encanador} alt="Encanador"/>
+            <img src={Encanador} alt="Encanador" />
             <h2>detalhes</h2>
             <p>
               {" "}
-              manutenção, montagem e reparos de instalações
-              hidráulicas e pneumáticas como tubulações de água e gás
+              manutenção, montagem e reparos de instalações hidráulicas e
+              pneumáticas como tubulações de água e gás
             </p>
             <p>R$ 350,00</p>
             <Button variant="contained" color="secondary">
@@ -269,13 +262,12 @@ export default class Contratante extends Component {
 
           <Card4>
             <h4>Mecânico</h4>
-            <img src={Mecanico} alt="Mecanico"/>
+            <img src={Mecanico} alt="Mecanico" />
             <h2>detalhes</h2>
             <p>
-              manutenção corretiva e preventiva em máquinas e
-              veículos, envolvendo a troca de peças e limpeza
-              de componentes, consertos, revisão de freios,
-              direção, regulagem de motores e suspensão.
+              manutenção corretiva e preventiva em máquinas e veículos,
+              envolvendo a troca de peças e limpeza de componentes, consertos,
+              revisão de freios, direção, regulagem de motores e suspensão.
             </p>
             <p>R$ 290,00</p>
             <Button variant="contained" color="secondary">
@@ -285,14 +277,13 @@ export default class Contratante extends Component {
 
           <Card5>
             <h4>Babá</h4>
-            <img src={baba} alt="baba"/>
+            <img src={baba} alt="baba" />
             <h2>detalhes</h2>
             <p>
-              Cuida de bebês e crianças, zelando pelo bem-estar,
-              saúde, alimentação, higiene pessoal,Realiza atividades
-              que estimulam o desenvolvimento físico, emocional
-              e motor da criança, viagens e consultas médicas.
-              {" "}
+              Cuida de bebês e crianças, zelando pelo bem-estar, saúde,
+              alimentação, higiene pessoal,Realiza atividades que estimulam o
+              desenvolvimento físico, emocional e motor da criança, viagens e
+              consultas médicas.{" "}
             </p>
             <p>R$ 300,00</p>
             <Button variant="contained" color="secondary">
@@ -302,7 +293,7 @@ export default class Contratante extends Component {
 
           <Card6>
             <h1>Diarista</h1>
-            <img src={Diarista} alt="Diarista"/>
+            <img src={Diarista} alt="Diarista" />
             <h2>detalhes</h2>
             <p>Cuida da limpeza e conservação da casa, lava e passa roupas.</p>
             <p>R$ 200,00</p>
@@ -310,11 +301,8 @@ export default class Contratante extends Component {
               ADD Carrinho
             </Button>
           </Card6>
-
         </div>
-
       </div>
-
     );
   }
 }

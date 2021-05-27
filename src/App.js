@@ -1,9 +1,23 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Inicial from "./Páginas/Inicial";
 import Prestador from "./Páginas/Prestador";
 import Contratante from "./Páginas/Contratante";
+import styled from "styled-components";
+
+const Fragment = styled.div`
+width: 100vw;
+height: 100vh;
+
+
+display: flex;
+flex-direction: column;
+
+
+`
+
+
 
 class App extends Component {
   state = { página: "Início" }
