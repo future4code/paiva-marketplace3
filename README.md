@@ -1,68 +1,107 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+     🐱‍👤 <a href="#" alt="site do projeto" target="_blank"> LabeNinjas </a>  🐱‍👤
+</h1>
 
-## Available Scripts
+<h3 align="center">
+    🛒 O talento certo, no momento certo  🐱‍👤
+</h3>
 
-In the project directory, you can run:
 
-### `npm start`
+## 💻 Sobre o projeto 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ 🐱‍👤 O site LabeNinjas é o projeto final do segundo módulo de frontend do curso de Web Full Stack da Labenu. 
+Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela e Thiago, da turma Paiva.
+<br>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<b>SITE DO PROJETO:</b> LINK DO SURGE
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Funcionalidades
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - [x] 
+  - [x] 
+  - [x] 
+  - [x] 
+  - [x] 
+  - [x] Responsividade; 
+ 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎨 Layout
 
-### `npm run eject`
+### Mobile
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+     <a href="g" alt="5458713e-2c2c-4109-b14f-b1c48cdcddcc" border="0"></a>
+     <a href="" alt="c4913d08-c8cb-4d4d-968e-b97971a2d8f6" border="0"></a>
+     
+  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+</p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Web
 
-## Learn More
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+ <a href="" alt="Captura-de-Tela-53" border="0" /></a>
+     <br/>
+ <a href="" alt="Captura-de-Tela-55" border="0"></a>    
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠 Tecnologias
 
-### Code Splitting
+As seguintes ferramentas foram usadas na construção do projeto:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### [React](https://reactjs.org/)  
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+---
 
-### Making a Progressive Web App
+## 👨‍💻 Equipe
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+<a href="https://github.com/VictorCCal22">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/39539970?v=4" width="100px;" alt=""/>
+ <br>
+ <sub><b>Janaina Franquis</b></sub></a> <a href="https://github.com/VictorCCal22" title="github"></a>
+ <br>
+ <br>
+ 
+ <a href="https://github.com/thiago-felipe-99">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/81257067?v=4" width="100px;" alt=""/>
+ <br>
+ <sub><b>Júllia Izidorio</b></sub></a> <a href="https://github.com/thiago-felipe-99" title="github"></a>
+ <br>
+ <br>
 
-### Advanced Configuration
+<a href="https://github.com/lausmpc">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/81258211?v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Laura Campos</b></sub></a> <a href="https://github.com/lausmpc" title="github"></a>
+ <br>
+ <br>
+ 
+ <a href="https://github.com/thiago-felipe-99">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/81252263?v=4" width="100px;" alt=""/>
+ <br>
+ <sub><b>Pamela Rane</b></sub></a> <a href="https://github.com/thiago-felipe-99" title="github"></a>
+ <br>
+ <br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+<a href="https://github.com/thiago-felipe-99">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/77975911?v=4" width="100px;" alt=""/>
+ <br>
+ <sub><b>Thiago Felipe Souza</b></sub></a> <a href="https://github.com/thiago-felipe-99" title="github"></a>
+ <br>
+ <br>
+ 
+ 
 
-### Deployment
+ 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
