@@ -46,22 +46,22 @@ export default class Inicial extends Component {
         <AreaBody>
           <section className="CardQuemSomos">
             <h2>Quem somos</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />
-              Ad veniam laboriosam maiores est excepturi laudantium voluptates?
-            </p>
-            <br />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />
-              Ad veniam laboriosam maiores est excepturi laudantium voluptates?
-            </p>
-            <br />
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>Ad veniam laboriosam maiores est excepturi laudantium voluptates?</p>
+            <br/>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>Ad veniam laboriosam maiores est excepturi laudantium voluptates?</p>
+            <br/>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium fugiat, <br />
-              placeat explicabo ab eum sequi vel ipsum, aspernatur voluptatibus
-              magnam unde, <br /> itaque repellendus iste. Magni?
+              Accusantium fugiat,
             </p>
+            <br/>
+            <p>
+              placeat explicabo ab eum sequi vel ipsum,
+              aspernatur voluptatibus magnam unde,
+            </p>
+            <p>itaque repellendus iste. Magni?</p>
 
             <ButtonContainer>
               <Button
@@ -82,7 +82,7 @@ export default class Inicial extends Component {
               </Button>
             </ButtonContainer>
           </section>
-          <img src={people} alt="pessoas" />
+          <img src={people} alt="pessoas"/>
         </AreaBody>
       </div>
     );
