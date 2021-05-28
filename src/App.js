@@ -6,18 +6,22 @@ import Prestador from "./Páginas/Prestador";
 import Contratante from "./Páginas/Contratante";
 import styled from "styled-components";
 
-const Fragment = styled.div`
-width: 100vw;
-height: 100vh;
+const Body = styled.div`
+  width: 100vw;
+  min-height: 100vh;
 
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-display: flex;
-flex-direction: column;
+  > main, > div {
+    flex-grow: 1;
+  }
 
-
-`
-
-
+  header, footer {
+    flex-shrink: 0
+  }
+`;
 
 class App extends Component {
   state = { página: "Início" }
@@ -55,11 +59,11 @@ class App extends Component {
     const página = this.escolherPágina();
 
     return (
-      <Fragment>
+      <Body>
         <Header/>
         {página}
         <Footer/>
-      </Fragment>
+      </Body>
     );
   }
 }
