@@ -64,7 +64,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ## 👨‍💻 Equipe
 
-<a href="https://github.com/VictorCCal22">
+<a href="https://github.com/jfranquis">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/39539970?v=4" width="100px;" alt=""/>
  <br>
  <sub><b>Janaina Franquis</b></sub></a> <a href="https://github.com/jfranquis" title="github"></a>
