@@ -10,6 +10,9 @@ export default class Filter extends React.Component {
     minFilter: 10,
     maxFilter: 5000,
     nomeFilter: 'Serviço',
+    servicosNoCarrinho: [
+
+    ]
   };
 
   onChangeMinFilter = (event) => {
@@ -28,7 +31,7 @@ export default class Filter extends React.Component {
   render() {
     return (
       <FilterContainer>
-        <Filters
+        <Filter
           minFilter={this.state.minFilter}
           maxFilter={this.state.maxFilter}
           nomeFilter={this.state.nomeFilter}
@@ -40,6 +43,7 @@ export default class Filter extends React.Component {
     );
   }
 }
+
 
 
 */

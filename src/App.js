@@ -5,7 +5,10 @@ import Inicial from "./Páginas/Inicial";
 import Prestador from "./Páginas/Prestador";
 import Contratante from "./Páginas/Contratante";
 import styled from "styled-components";
-import Filter from "./components/Filter";
+
+
+
+
 
 const Fragment = styled.div`
   width: 100vw;
@@ -61,7 +64,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-
+        
         {página}
         <Footer />
       </Fragment>
