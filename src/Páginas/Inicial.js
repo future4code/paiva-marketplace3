@@ -16,13 +16,13 @@ const Main = styled.main`
 `;
 
 const ButtonContainer = styled.article`
-
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 2vh;
   margin-top: 2vh;
   justify-items: center;
+
   @media screen and (min-width: 850px) {
     margin-top: 0;
     grid-template-columns: 1fr auto;
@@ -31,7 +31,7 @@ const ButtonContainer = styled.article`
 
 const Section = styled.section`
   max-width: 1200px;
-  margin: 0;
+  margin: 0 auto;
   padding: 4vh;
   display: flex;
   justify-content: space-evenly;
@@ -51,7 +51,7 @@ export default class Inicial extends Component {
         <Section>
           <article>
             <h2>Quem somos</h2>
-            <br></br>
+            <br/>
             <p>Criada em 2021 por jovens desenvolvedores, LabeNinjas quer fazer a diferença.</p>
             <p>no mercado para contratação de serviços pela web.</p>
             <br/>
