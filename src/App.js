@@ -3,8 +3,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Inicial from "./Páginas/Inicial";
 import Prestador from "./Páginas/Prestador";
-import Contratante from "./Páginas/Contratante";
+import ContratantePag from "./Páginas/ContratantePag";
 import styled from "styled-components";
+import Carrinho from "./components/Carrinho";
 
 const Body = styled.div`
   width: 100vw;
@@ -24,48 +25,63 @@ const Body = styled.div`
 `;
 
 class App extends Component {
-  state = { página: "Início" }
+    state = { página: "Início" }
 
-  escolherPágina = () => {
-    if (this.state.página === "Início")
+    escolherPágina = () => {
+      if (this.state.página === "Início")
+        return (
+          <Inicial
+            irParaPrestador={this.irParaPrestador}
+            irParaContratante={this.irParaContratante}
+          />
+        );
+
+      if (this.state.página === "Prestador")
+        return <Prestador irParaInício={this.irParaInício}/>;
+
+      if (this.state.página === "Contratante")
+        return (
+          <ContratantePag
+            irParaInício={this.irParaInício}
+            irParaCarrinho={this.irParaCarrinho}
+          />
+        );
+
+      if (this.state.página === "Carrinho")
+        return (
+          <Carrinho
+            irParaCarrinho={this.irParaCarrinho}
+            voltar={this.irParaContratante}
+          />
+        );
+
       return (
         <Inicial
           irParaPrestador={this.irParaPrestador}
           irParaContratante={this.irParaContratante}
         />
       );
+    }
 
-    if (this.state.página === "Prestador")
-      return <Prestador irParaInício={this.irParaInício}/>;
+    irParaInício = () => { this.setState({ página: "Início" }); }
 
-    if (this.state.página === "Contratante")
-      return <Contratante irParaInício={this.irParaInício}/>;
+    irParaPrestador = () => { this.setState({ página: "Prestador" }); }
 
-    return (
-      <Inicial
-        irParaPrestador={this.irParaPrestador}
-        irParaContratante={this.irParaContratante}
-      />
-    );
-  }
+    irParaContratante = () => { this.setState({ página: "Contratante" }); }
 
-  irParaInício = () => { this.setState({ página: "Início" }); }
+    irParaCarrinho = () => { this.setState({ página: "Carrinho" }); }
 
-  irParaPrestador = () => { this.setState({ página: "Prestador" }); }
+    render() {
+      const página = this.escolherPágina();
 
-  irParaContratante = () => { this.setState({ página: "Contratante" }); }
-
-  render() {
-    const página = this.escolherPágina();
-
-    return (
-      <Body>
-        <Header/>
-        {página}
-        <Footer/>
-      </Body>
-    );
-  }
+      return (
+        <Body>
+          <Header/>
+          {página}
+          <Footer/>
+        </Body>
+      );
+    }
 }
 
 export default App;
