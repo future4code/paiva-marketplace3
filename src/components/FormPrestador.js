@@ -27,119 +27,140 @@ const CardServiços = styled.div`
   flex-direction: column;
   padding: 40px;
 `;
+//----------------API-------------//
+const url = `https://labeninjas.herokuapp.com/jobs`;
+const header = {
+    headers: {
+        Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a"
+    }
+};
+//----------------API-------------//
 
 export default class FormPrestador extends React.Component {
-  state = {
-    title: "",
-    description: "",
-    price: "",
-    paymentMethods: "",
-    dueDate: "",
-  };
-
-  changeInputValues = (e) => {
-    if (e.target.id === "pagamento") {
-      this.setState({ [e.target.name]: [e.target.value] });
-    } else {
-      this.setState({ [e.target.name]: e.target.value });
+    state ={
+        title: "", 
+        description: "", 
+        price: "", 
+        paymentMethods: "", 
+        dueDate: "", 
+        serviços:[]
     }
-  };
-
-  createJob = (e) => {
-    const url = `https://labeninjas.herokuapp.com/jobs`;
-    const body = {
-      title: this.state.title,
-      description: this.state.description,
-      price: Number(this.state.price),
-      paymentMethods: this.state.paymentMethods,
-      dueDate: this.state.dueDate,
+        
+    changeInputValues = (e) => {
+        if (e.target.id === "pagamento") {
+            this.setState({ [e.target.name]: [e.target.value] });
+        } else {
+            this.setState({ [e.target.name]: e.target.value });
+        }
     };
-    console.log(body);
-    axios
-      .post(url, body, {
-        headers: {
-          Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a",//nossa chave//
-        },
-      })
-      .then((res) => {
-        alert("Serviço cadastrado com sucesso!");
-        this.setState({
-          title: "",
-          description: "",
-          price: "",
-          paymentMethods: "",
-          dueDate: "",
-        });
-      })
-      .catch((err) => {
-        console.log(err.message);
-        alert(err.response.data.message);
-      });
-  };
+    componentDidMount() { this.getAllJobs() }
 
-  render() {
-    return (
-      <Section>
-        <CardCadastro>
-          <h2>CADASTRO DE SERVIÇOS </h2>
+    getAllJobs = async () => {
+        await axios
+            .get(url, header)
+            .then((certo) => {
+                this.setState({serviços:certo.data.jobs})
+                console.log(certo.data.jobs)
+            })
+            .catch((errado) => {
+                console.log(errado)
+            })
+    }
+    createJob = (e) => {
 
-          <input
-            placeholder="Serviço"
-            name="title"
-            value={this.state.title}
-            onChange={this.changeInputValues}
-          />
-          <input
-            placeholder="Descrição"
-            name="description"
-            value={this.state.description}
-            onChange={this.changeInputValues}
-          />
-          <input
-            type="number"
-            placeholder="Valor"
-            name="price"
-            value={this.state.price}
-            onChange={this.changeInputValues}
-          />
-          <div>
-            <select
-              placeholder="Forma de pagamento"
-              name="paymentMethods"
-              value={this.state.paymentMethods}
-              onChange={this.changeInputValues}
-              id="pagamento"
-            >
-              <option>Forma de Pagamento</option>
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de Débito">Cartão de Débito</option>
-              <option value="Cartão de Crédito">Cartão de Crédito</option>
-              <option value="Paypall">Paypall</option>
-            </select>
-            <input
-              placeholder="Prazo (ano-mês-dia)"
-              name="dueDate"
-              value={this.state.dueDate}
-              onChange={this.changeInputValues}
-            />
-          </div>
-          <button onClick={this.createJob}>Cadastrar serviços</button>
-        </CardCadastro>
-        <div>
-          <CardServiços>
-            <h2>SERVIÇOS CADASTRADOS</h2>
+        const body = {
+            title: this.state.title,
+            description: this.state.description,
+            price: Number(this.state.price),
+            paymentMethods: this.state.paymentMethods,
+            dueDate: this.state.dueDate,
+        };
 
-            <p>Nome do serviço: </p>
-            <button>X</button>
-            <p>Nome do serviço: </p>
-            <button>X</button>
-            <p>Nome do serviço: </p>
-            <button>X</button>
+        axios
+            .post(url, body, header)
+            .then((res) => {
+                alert("Serviço cadastrado com sucesso!");
+                this.setState({
+                    title: "",
+                    description: "",
+                    price: "",
+                    paymentMethods: "",
+                    dueDate: "",
+                });
+            })
+            .catch((err) => {
+                console.log(err.message);
+                alert(err.response.data.message);
+            });
+    };
+    
 
-            {/* retorna serviços cadastrados com botão de delete */}
-          </CardServiços>
-        </div>
-      </Section>
-    );
-  }
+    render() {
+        console.log(this.state)
+        const mostraServiços = this.state.serviços.map((serviço)=>{
+            return <CardServiços>{serviço.title}
+               <button>X</button>
+            </CardServiços>
+        })
+                 
+        return (
+            <Section>
+                <CardCadastro>
+                    <h2>CADASTRO DE SERVIÇOS </h2>
+
+                    <input
+                        placeholder="Serviço"
+                        name="title"
+                        value={this.state.title}
+                        onChange={this.changeInputValues}
+                    />
+                    <input
+                        placeholder="Descrição"
+                        name="description"
+                        value={this.state.description}
+                        onChange={this.changeInputValues}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Valor"
+                        name="price"
+                        value={this.state.price}
+                        onChange={this.changeInputValues}
+                    />
+                    <div>
+                        <select
+                            placeholder="Forma de pagamento"
+                            name="paymentMethods"
+                            value={this.state.paymentMethods}
+                            onChange={this.changeInputValues}
+                            id="pagamento"
+                        >
+                            <option>Forma de Pagamento</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Cartão de Débito">Cartão de Débito</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                            <option value="Paypall">Paypall</option>
+                        </select>
+                        <input
+                            placeholder="Prazo (ano-mês-dia)"
+                            name="dueDate"
+                            value={this.state.dueDate}
+                            onChange={this.changeInputValues}
+                        />
+                    </div>
+                    <button onClick={this.createJob}>Cadastrar serviços</button>
+                </CardCadastro>
+                <div>
+                    <CardServiços>
+                        <h2>SERVIÇOS CADASTRADOS</h2>                       
+
+                        <p>{mostraServiços}</p>
+                     
+                        
+                        {/* retorna serviços cadastrados com botão de delete */}
+                    </CardServiços>
+                </div>
+            </Section>
+        );
+    }
 }

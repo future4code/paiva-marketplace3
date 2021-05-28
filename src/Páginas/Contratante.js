@@ -17,7 +17,7 @@ import Montador from "../img/Montador.jpeg";
 import Pintor from "../img/Pintor.jpeg";
 import Mecanico from "../img/Mecanico.png";
 import baba from "../img/baba.png";
-import { Filter } from "@material-ui/icons";
+import axios from "axios";
 
 const Filtro = styled.div`
   margin: 10px;
@@ -31,16 +31,7 @@ const Filtro = styled.div`
   border: 1px outset darkgrey;
 `;
 
-const Section = styled.section`
-  display: flex;
-  grid-template-columns: 1fr 1fr;
-  padding: 100px;
-  top: 15px;
-  justify-items: center;
-  align-items: center;
-`;
-
-const Card1 = styled.div`
+const Card = styled.div`
   display: flex;
   margin: 16px;
   padding: 40px;
@@ -64,305 +55,121 @@ const Card1 = styled.div`
   }
 `;
 
-const Card2 = styled.div`
-  display: flex;
-  margin: 16px;
-  row-gap: 10px;
-  padding: 40px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border: 1px outset darkgrey;
-
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const Card3 = styled.div`
-  display: flex;
-  margin: 16px;
-  row-gap: 10px;
-  padding: 40px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border: 1px outset darkgrey;
-
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const Card4 = styled.div`
-  display: flex;
-  margin: 16px;
-  row-gap: 10px;
-  padding: 40px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border: 1px outset darkgrey;
-
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const Card5 = styled.div`
-  display: flex;
-  margin: 16px;
-  row-gap: 10px;
-  padding: 40px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border: 1px outset darkgrey;
-
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const Card6 = styled.div`
-  display: flex;
-  margin: 16px;
-  row-gap: 10px;
-  padding: 40px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border: 1px outset darkgrey;
-
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
 const BotaoCarrinho = styled.button`
   display: flex;
   justify-content: right;
 `;
 
+//----------------API-------------//
+const url = "https://labeninjas.herokuapp.com/jobs";
+const header = { headers: { Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a" } };
+
+//----------------API-------------//
 export default class Contratante extends Component {
-  adicionarNoCarrinho = () => {
-    alert("Adicionado com Sucesso!");
-  };
+    state={ serviços: [] }
 
-  render() {
-    console.log(this.props);
+    componentDidMount() { this.getAllJobs(); }
 
-    return (
-      <Section>
+    getAllJobs = () => {
+      axios.get(url, header)
+        .then((certo) => {
+          this.setState({ serviços: certo.data.jobs });
+        })
+        .catch((errado) => {
+          alert(`Erro ao pegar os serviços\nErro:${JSON.stringify(errado)}`);
+        });
+    }
+
+    render() {
+      const mostraServiços = this.state.serviços.map((serviço) => (
+        <Card key={serviço.id}>
+          <h4>{serviço.title}</h4>
+          <h4>{serviço.description}</h4>
+          <p>{serviço.price}</p>
+          <Button variant="contained" color="secondary">
+            ADD Carrinho
+          </Button>
+        </Card>
+      ));
+
+      return (
         <div>
+
           <button onClick={this.props.irParaInício}>
             Ir Para A Página Inicial
           </button>
           <div>
             <Icon>
               <Icon color="primary" aria-label="add to Build">
-                <BuildIcon />
+                <BuildIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to Cake">
-                <CakeIcon />
+                <CakeIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to FitnessCenter">
-                <FitnessCenterIcon />
+                <FitnessCenterIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to LocalLaundryService">
-                <LocalLaundryServiceIcon />
+                <LocalLaundryServiceIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to Laptop">
-                <LaptopIcon />
+                <LaptopIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to Settings">
-                <SettingsIcon />
+                <SettingsIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to Translate">
-                <TranslateIcon />
+                <TranslateIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to LocalBar">
-                <LocalBarIcon />
+                <LocalBarIcon/>
               </Icon>
 
               <Icon color="primary" aria-label="add to CameraAlt">
-                <CameraAltIcon />
+                <CameraAltIcon/>
               </Icon>
             </Icon>
           </div>
-          
-            <Filtro>
-              <div>
-                <h4>Filtro</h4>
 
-                <p>Buscar por nome: </p>
-                <input type="text" value={this.props.nomeFilter} />
-
-                <p>Valor mínimo </p>
-                <input
-                  type="number"
-                  value={this.props.minFilter}
-                  onChange={this.props.onChangeMinFilter}
-                />
-
-                <p>Valor máximo</p>
-                <input
-                  type="number"
-                  value={this.props.maxFilter}
-                  onChange={this.props.onChangeMaxFilter}
-                />
-                <br />
-                <span>Ordenação:</span>
-                <br />
-                <select>
-                  <option>Título A-Z</option>
-                  <option>Título Z-A</option>
-                  <option>Prazo 3 dias</option>
-                  <option>Prazo 5 dias</option>
-                  <option>Prazo 10 dias</option>
-                </select>
-                <br />
-                <button>Buscar</button>
-              </div>
-            </Filtro>
-          
           <div>
-            <Card1>
-              <h4>Pintor de Obras</h4>
-              <img src={Pintor} alt="Pintor" />
-              <h4>detalhes</h4>
-              <p>
-                Realiza pintura em paredes internas e externas. Prepara as
-                superfícies antes de pintá-las, como limpeza, aplicação de massa
-                fina ou corrida e lixamento. Aplica papel de parede e gesso para
-                acabamento.
-              </p>
-              <p>R$ 400,00</p>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.adicionarNoCarrinho}
-              >
-                ADD Carrinho
-              </Button>
-            </Card1>
+            <Filtro>
+              <h4>Filtro</h4>
 
-            <Card2>
-              <h4>Montador</h4>
-              <img src={Montador} alt="Montador" />
-              <h2>detalhes</h2>
-              <p>
-                montagem e desmontagem de estruturas, móveis, painéis,e demais
-                equipamentos, nas normas e procedimentos técnicos.
-              </p>
-              <p>R$ 290,00</p>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.adicionarNoCarrinho}
-              >
-                ADD Carrinho
-              </Button>
-            </Card2>
+              <p>Buscar por nome </p>
+              <input type="text" id="txtBuscar"/>
 
-            <Card3>
-              <h4>Encanador</h4>
-              <img src={Encanador} alt="Encanador" />
-              <h2>detalhes</h2>
-              <p>
-                {" "}
-                manutenção, montagem e reparos de instalações hidráulicas e
-                pneumáticas como tubulações de água e gás
-              </p>
-              <p>R$ 350,00</p>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.adicionarNoCarrinho}
-              >
-                ADD Carrinho
-              </Button>
-            </Card3>
+              <p>Valor </p>
 
-            <Card4>
-              <h4>Mecânico</h4>
-              <img src={Mecanico} alt="Mecanico" />
-              <h2>detalhes</h2>
-              <p>
-                manutenção corretiva e preventiva em máquinas e veículos,
-                envolvendo a troca de peças e limpeza de componentes, consertos,
-                revisão de freios, direção, regulagem de motores e suspensão.
-              </p>
-              <p>R$ 290,00</p>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.adicionarNoCarrinho}
-              >
-                ADD Carrinho
-              </Button>
-            </Card4>
+              <input type="ranger" min="-10" max="10" step="0.01"/>
 
-            <Card5>
-              <h4>Babá</h4>
-              <img src={baba} alt="baba" />
-              <h2>detalhes</h2>
-              <p>
-                Cuida de bebês e crianças, zelando pelo bem-estar, saúde,
-                alimentação, higiene pessoal,Realiza atividades que estimulam o
-                desenvolvimento físico, emocional e motor da criança, viagens e
-                consultas médicas.{" "}
-              </p>
-              <p>R$ 300,00</p>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.adicionarNoCarrinho}
-              >
-                ADD Carrinho
-              </Button>
-            </Card5>
-
-            <Card6>
-              <h1>Diarista</h1>
-              <img src={Diarista} alt="Diarista" />
-              <h2>detalhes</h2>
-              <p>
-                Cuida da limpeza e conservação da casa, lava e passa roupas.
-              </p>
-              <p>R$ 200,00</p>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.adicionarNoCarrinho}
-              >
-                ADD Carrinho
-              </Button>
-            </Card6>
+              <span>Ordenações:</span>
+              <select>
+                <option>Título A-Z</option>
+                <option>Título Z-A</option>
+                <option>Prazo 3 dias</option>
+                <option>Prazo 3 dias</option>
+                <option>Prazo 10 dias</option>
+              </select>
+            </Filtro>
           </div>
+          <BotaoCarrinho>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.props.irParaCarrinho}
+            >
+              Ver Carrinho
+            </Button>
+          </BotaoCarrinho>
+          {mostraServiços}
         </div>
-      </Section>
-    );
-  }
+      );
+    }
 }
