@@ -3,9 +3,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Inicial from "./Páginas/Inicial";
 import Prestador from "./Páginas/Prestador";
-import ContratantePag from "./Páginas/ContratantePag";
+import Contratante from "./Páginas/Contratante";
+import Carrinho from "./Páginas/Carrinho";
 import styled from "styled-components";
-import Carrinho from "./components/Carrinho";
 
 const Body = styled.div`
   width: 100vw;
@@ -41,7 +41,7 @@ class App extends Component {
 
       if (this.state.página === "Contratante")
         return (
-          <ContratantePag
+          <Contratante
             irParaInício={this.irParaInício}
             irParaCarrinho={this.irParaCarrinho}
           />
