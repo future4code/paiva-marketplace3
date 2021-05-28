@@ -17,6 +17,7 @@ import Montador from "../img/Montador.jpeg";
 import Pintor from "../img/Pintor.jpeg";
 import Mecanico from "../img/Mecanico.png";
 import baba from "../img/baba.png";
+import { Filter } from "@material-ui/icons";
 
 const Filtro = styled.div`
   margin: 10px;
@@ -153,16 +154,19 @@ const Card6 = styled.div`
   }
 `;
 const BotaoCarrinho = styled.button`
-display:flex;
-justify-content:right;
+  display: flex;
+  justify-content: right;
 `;
 
 export default class Contratante extends Component {
+  adicionarNoCarrinho = () => {
+    alert("Adicionado com Sucesso!");
+  };
+
   render() {
     console.log(this.props);
 
     return (
-
       <Section>
         <div>
           <button onClick={this.props.irParaInício}>
@@ -205,43 +209,44 @@ export default class Contratante extends Component {
               <Icon color="primary" aria-label="add to CameraAlt">
                 <CameraAltIcon />
               </Icon>
-
             </Icon>
           </div>
+          
+            <Filtro>
+              <div>
+                <h4>Filtro</h4>
 
+                <p>Buscar por nome: </p>
+                <input type="text" value={this.props.nomeFilter} />
 
-          <Filtro>
-            <div>
-              <h4>Filtro</h4>
+                <p>Valor mínimo </p>
+                <input
+                  type="number"
+                  value={this.props.minFilter}
+                  onChange={this.props.onChangeMinFilter}
+                />
 
-              <p>Buscar por nome: </p>
-              <input type="text" value={this.props.nomeFilter} />
-
-              <p>Valor mínimo </p>
-              <input
-                type="number"
-                value={this.props.minFilter}
-                onChange={this.props.onChangeMinFilter}
-              />
-
-              <p>Valor máximo</p>
-              <input
-                type="number"
-                value={this.props.maxFilter}
-                onChange={this.props.onChangeMaxFilter}
-              />
-
-              <span>Ordenações:</span>
-              <select>
-                <option>Título A-Z</option>
-                <option>Título Z-A</option>
-                <option>Prazo 3 dias</option>
-                <option>Prazo 3 dias</option>
-                <option>Prazo 10 dias</option>
-              </select>
-            </div>
-          </Filtro>
-
+                <p>Valor máximo</p>
+                <input
+                  type="number"
+                  value={this.props.maxFilter}
+                  onChange={this.props.onChangeMaxFilter}
+                />
+                <br />
+                <span>Ordenação:</span>
+                <br />
+                <select>
+                  <option>Título A-Z</option>
+                  <option>Título Z-A</option>
+                  <option>Prazo 3 dias</option>
+                  <option>Prazo 5 dias</option>
+                  <option>Prazo 10 dias</option>
+                </select>
+                <br />
+                <button>Buscar</button>
+              </div>
+            </Filtro>
+          
           <div>
             <Card1>
               <h4>Pintor de Obras</h4>
@@ -257,7 +262,7 @@ export default class Contratante extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.irParaCarrinho}
+                onClick={this.props.adicionarNoCarrinho}
               >
                 ADD Carrinho
               </Button>
@@ -275,7 +280,7 @@ export default class Contratante extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.irParaCarrinho}
+                onClick={this.props.adicionarNoCarrinho}
               >
                 ADD Carrinho
               </Button>
@@ -294,7 +299,7 @@ export default class Contratante extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.irParaCarrinho}
+                onClick={this.props.adicionarNoCarrinho}
               >
                 ADD Carrinho
               </Button>
@@ -313,7 +318,7 @@ export default class Contratante extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.irParaCarrinho}
+                onClick={this.props.adicionarNoCarrinho}
               >
                 ADD Carrinho
               </Button>
@@ -333,7 +338,7 @@ export default class Contratante extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.irParaCarrinho}
+                onClick={this.props.adicionarNoCarrinho}
               >
                 ADD Carrinho
               </Button>
@@ -350,7 +355,7 @@ export default class Contratante extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.props.irParaCarrinho}
+                onClick={this.props.adicionarNoCarrinho}
               >
                 ADD Carrinho
               </Button>
@@ -358,7 +363,6 @@ export default class Contratante extends Component {
           </div>
         </div>
       </Section>
-
-    )
+    );
   }
 }
