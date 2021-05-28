@@ -17,11 +17,12 @@ import Montador from "../img/Montador.jpeg";
 import Pintor from "../img/Pintor.jpeg";
 import Mecanico from "../img/Mecanico.png";
 import baba from "../img/baba.png";
-import axios from "axios"
+import axios from "axios";
 
 const Filtro = styled.div`
   margin: 10px;
   display: flex;
+  grid-template-columns: 1fr 1fr;
   padding: 10px;
   height: 300px;
   flex-direction: column;
@@ -55,124 +56,120 @@ const Card = styled.div`
 `;
 
 const BotaoCarrinho = styled.button`
-display:flex;
-justify-content:right;
+  display: flex;
+  justify-content: right;
 `;
+
 //----------------API-------------//
-const url = `https://labeninjas.herokuapp.com/jobs`;
-const header = {
-    headers: {
-        Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a"
-    }
-};
+const url = "https://labeninjas.herokuapp.com/jobs";
+const header = { headers: { Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a" } };
+
 //----------------API-------------//
 export default class Contratante extends Component {
-    state={
-        serviços:[]
-    }
-    componentDidMount() { this.getAllJobs() }
+    state={ serviços: [] }
 
-    getAllJobs = async () => {
-        await axios
-            .get(url, header)
-            .then((certo) => {
-                this.setState({serviços:certo.data.jobs})
-                console.log(certo.data.jobs)
-            })
-            .catch((errado) => {
-                console.log(errado)
-            })
-    }
-    render() {
-        console.log(this.props);
-        const mostraServiços = this.state.serviços.map((serviço)=>{
-            return <Card> <h4>{serviço.title}</h4>
-            <h4>{serviço.description}</h4>
-            <p>{serviço.price}</p>
-            <Button variant="contained" color="secondary">
-                ADD Carrinho
-</Button>
-            </Card>
+    componentDidMount() { this.getAllJobs(); }
+
+    getAllJobs = () => {
+      axios.get(url, header)
+        .then((certo) => {
+          this.setState({ serviços: certo.data.jobs });
         })
+        .catch((errado) => {
+          alert(`Erro ao pegar os serviços\nErro:${JSON.stringify(errado)}`);
+        });
+    }
 
-        return (
-            <div>
-
-                <button onClick={this.props.irParaInício}>
-                    Ir Para A Página Inicial
-        </button>
-                <div>
-                    <Icon>
-                        <Icon color="primary" aria-label="add to Build">
-                            <BuildIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to Cake">
-                            <CakeIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to FitnessCenter">
-                            <FitnessCenterIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to LocalLaundryService">
-                            <LocalLaundryServiceIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to Laptop">
-                            <LaptopIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to Settings">
-                            <SettingsIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to Translate">
-                            <TranslateIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to LocalBar">
-                            <LocalBarIcon />
-                        </Icon>
-
-                        <Icon color="primary" aria-label="add to CameraAlt">
-                            <CameraAltIcon />
-                        </Icon>
-                    </Icon>
-                </div>
-
-                <div>
-                    <Filtro>
-                        <h4>Filtro</h4>
-
-                        <p>Buscar por nome </p>
-                        <input type="text" id="txtBuscar" />
-
-                        <p>Valor </p>
-
-                        <input type="ranger" min="-10" max="10" step="0.01" />
-
-                        <span>Ordenações:</span>
-                        <select>
-                            <option>Título A-Z</option>
-                            <option>Título Z-A</option>
-                            <option>Prazo 3 dias</option>
-                            <option>Prazo 3 dias</option>
-                            <option>Prazo 10 dias</option>
-                        </select>
-                    </Filtro>
-                </div>
-                <BotaoCarrinho>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.props.irParaCarrinho}
-                    >
-                        Ver Carrinho
+    render() {
+      const mostraServiços = this.state.serviços.map((serviço) => (
+        <Card key={serviço.id}>
+          <h4>{serviço.title}</h4>
+          <h4>{serviço.description}</h4>
+          <p>{serviço.price}</p>
+          <Button variant="contained" color="secondary">
+            ADD Carrinho
           </Button>
-                </BotaoCarrinho>
-               {mostraServiços}
-            </div>
-        );
+        </Card>
+      ));
+
+      return (
+        <div>
+
+          <button onClick={this.props.irParaInício}>
+            Ir Para A Página Inicial
+          </button>
+          <div>
+            <Icon>
+              <Icon color="primary" aria-label="add to Build">
+                <BuildIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to Cake">
+                <CakeIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to FitnessCenter">
+                <FitnessCenterIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to LocalLaundryService">
+                <LocalLaundryServiceIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to Laptop">
+                <LaptopIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to Settings">
+                <SettingsIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to Translate">
+                <TranslateIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to LocalBar">
+                <LocalBarIcon/>
+              </Icon>
+
+              <Icon color="primary" aria-label="add to CameraAlt">
+                <CameraAltIcon/>
+              </Icon>
+            </Icon>
+          </div>
+
+          <div>
+            <Filtro>
+              <h4>Filtro</h4>
+
+              <p>Buscar por nome </p>
+              <input type="text" id="txtBuscar"/>
+
+              <p>Valor </p>
+
+              <input type="ranger" min="-10" max="10" step="0.01"/>
+
+              <span>Ordenações:</span>
+              <select>
+                <option>Título A-Z</option>
+                <option>Título Z-A</option>
+                <option>Prazo 3 dias</option>
+                <option>Prazo 3 dias</option>
+                <option>Prazo 10 dias</option>
+              </select>
+            </Filtro>
+          </div>
+          <BotaoCarrinho>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.props.irParaCarrinho}
+            >
+              Ver Carrinho
+            </Button>
+          </BotaoCarrinho>
+          {mostraServiços}
+        </div>
+      );
     }
 }

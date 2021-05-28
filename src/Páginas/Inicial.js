@@ -16,13 +16,13 @@ const Main = styled.main`
 `;
 
 const ButtonContainer = styled.article`
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 2vh;
   margin-top: 2vh;
   justify-items: center;
-
   @media screen and (min-width: 850px) {
     margin-top: 0;
     grid-template-columns: 1fr auto;
@@ -31,7 +31,7 @@ const ButtonContainer = styled.article`
 
 const Section = styled.section`
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   padding: 4vh;
   display: flex;
   justify-content: space-evenly;
@@ -51,22 +51,20 @@ export default class Inicial extends Component {
         <Section>
           <article>
             <h2>Quem somos</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <p>Ad veniam laboriosam maiores est excepturi laudantium voluptates?</p>
+            <br></br>
+            <p>Criada em 2021 por jovens desenvolvedores, LabeNinjas quer fazer a diferença.</p>
+            <p>no mercado para contratação de serviços pela web.</p>
             <br/>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <p>Ad veniam laboriosam maiores est excepturi laudantium voluptates?</p>
+            <p>Neste momento nossa plataforma que está em fase de teste e já detém cerca de</p>
+            <p>50 categorias de serviços cadastrados.</p>
             <br/>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium fugiat,
-            </p>
+            <p> Temos o compromisso de entregar aos nossos usuaários um contato eficaz, ágil e seguro.</p>
             <br/>
-            <p>
-              placeat explicabo ab eum sequi vel ipsum,
-              aspernatur voluptatibus magnam unde,
-            </p>
-            <p>itaque repellendus iste. Magni?</p>
+            <p>Queremos ser a maior e a melhor plataforma para contratação de serviços!</p>
+            <p>Queremos faciliar o seu dia a dia!</p>
+            <p>Queremos você usando nossa plataforma!</p>
+
+            <p> Faça sua inscrição grátis!</p>
 
           </article>
           <ButtonContainer>
