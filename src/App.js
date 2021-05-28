@@ -5,22 +5,18 @@ import Inicial from "./Páginas/Inicial";
 import Prestador from "./Páginas/Prestador";
 import Contratante from "./Páginas/Contratante";
 import styled from "styled-components";
+import Filter from "./components/Filter";
 
 const Fragment = styled.div`
-width: 100vw;
-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-
-display: flex;
-flex-direction: column;
-
-
-`
-
-
+  display: flex;
+  flex-direction: column;
+`;
 
 class App extends Component {
-  state = { página: "Início" }
+  state = { página: "Início" };
 
   escolherPágina = () => {
     if (this.state.página === "Início")
@@ -32,10 +28,10 @@ class App extends Component {
       );
 
     if (this.state.página === "Prestador")
-      return <Prestador irParaInício={this.irParaInício}/>;
+      return <Prestador irParaInício={this.irParaInício} />;
 
     if (this.state.página === "Contratante")
-      return <Contratante irParaInício={this.irParaInício}/>;
+      return <Contratante irParaInício={this.irParaInício} />;
 
     return (
       <Inicial
@@ -43,22 +39,33 @@ class App extends Component {
         irParaContratante={this.irParaContratante}
       />
     );
-  }
+  };
 
-  irParaInício = () => { this.setState({ página: "Início" }); }
+  irParaInício = () => {
+    this.setState({ página: "Início" });
+  };
 
-  irParaPrestador = () => { this.setState({ página: "Prestador" }); }
+  irParaPrestador = () => {
+    this.setState({ página: "Prestador" });
+  };
 
-  irParaContratante = () => { this.setState({ página: "Contratante" }); }
+  irParaContratante = () => {
+    this.setState({ página: "Contratante" });
+  };
+  
+
+  // Filtro
+
 
   render() {
     const página = this.escolherPágina();
 
     return (
       <Fragment>
-        <Header/>
+        <Header />
+        
         {página}
-        <Footer/>
+        <Footer />
       </Fragment>
     );
   }

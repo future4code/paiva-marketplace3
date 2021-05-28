@@ -6,27 +6,24 @@
     🛒 O talento certo, no momento certo  🐱‍👤
 </h3>
 
+## 💻 Sobre o projeto
 
-## 💻 Sobre o projeto 
-
- 🐱‍👤 O site LabeNinjas é o projeto final do segundo módulo de frontend do curso de Web Full Stack da Labenu. 
+🐱‍👤 O site LabeNinjas é o projeto final do segundo módulo de frontend do curso de Web Full Stack da Labenu.
 Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela e Thiago, da turma Paiva.
 <br>
 
 <b>SITE DO PROJETO:</b> LINK DO SURGE
 
-
 ---
 
 ## ⚙️ Funcionalidades
 
-  - [x] 
-  - [x] 
-  - [x] 
-  - [x] 
-  - [x] 
-  - [x] Responsividade; 
- 
+- [x]
+- [x]
+- [x]
+- [x]
+- [x]
+- [x] Responsividade;
 
 ---
 
@@ -38,7 +35,6 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
      <a href="g" alt="5458713e-2c2c-4109-b14f-b1c48cdcddcc" border="0"></a>
      <a href="" alt="c4913d08-c8cb-4d4d-968e-b97971a2d8f6" border="0"></a>
      
-  
 
 
 </p>
@@ -57,14 +53,13 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### [React](https://reactjs.org/)  
-
+#### [React](https://reactjs.org/)
 
 ---
 
 ## 👨‍💻 Equipe
 
-<a href="https://github.com/VictorCCal22">
+<a href="https://github.com/jfranquis">
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/39539970?v=4" width="100px;" alt=""/>
  <br>
  <sub><b>Janaina Franquis</b></sub></a> <a href="https://github.com/jfranquis" title="github"></a>
@@ -99,9 +94,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
  <br>
  <br>
  
- 
 
- 
 
 ---
-
