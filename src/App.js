@@ -52,10 +52,8 @@ class App extends Component {
   irParaContratante = () => {
     this.setState({ página: "Contratante" });
   };
-  
 
   // Filtro
-
 
   render() {
     const página = this.escolherPágina();
@@ -63,7 +61,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        
+
         {página}
         <Footer />
       </Fragment>

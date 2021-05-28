@@ -152,12 +152,17 @@ const Card6 = styled.div`
     height: 200px;
   }
 `;
+const BotaoCarrinho = styled.button`
+display:flex;
+justify-content:right;
+`;
 
 export default class Contratante extends Component {
-  state = {};
-
   render() {
+    console.log(this.props);
+
     return (
+
       <Section>
         <div>
           <button onClick={this.props.irParaInício}>
@@ -200,8 +205,10 @@ export default class Contratante extends Component {
               <Icon color="primary" aria-label="add to CameraAlt">
                 <CameraAltIcon />
               </Icon>
+
             </Icon>
           </div>
+
 
           <Filtro>
             <div>
@@ -351,6 +358,7 @@ export default class Contratante extends Component {
           </div>
         </div>
       </Section>
-    );
+
+    )
   }
 }
