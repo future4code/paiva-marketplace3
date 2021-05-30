@@ -47,6 +47,24 @@ const Desistir = styled.div`
 `;
 
 export default class Carrinho extends Component {
+  state = {
+
+  }
+
+  getJobCart = () => {
+    const url = `https://labeninjas.herokuapp.com/jobs/${id}`;
+    const header = { 
+      headers: {
+         Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a" } 
+        };
+    axios
+    .get(url, header)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err))
+  }
+
   render() {
     return (
       <div>

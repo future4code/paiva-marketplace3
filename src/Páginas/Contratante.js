@@ -87,7 +87,7 @@ export default class Contratante extends Component {
           <h4>{serviço.description}</h4>
           <p>{serviço.price}</p>
           <Button variant="contained" color="secondary">
-            ADD Carrinho
+            Adicionar ao Carrinho
           </Button>
         </Card>
       ));
