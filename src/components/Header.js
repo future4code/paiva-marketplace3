@@ -15,7 +15,8 @@ const AreaHeader = styled.header`
   justify-content: center;
 
   img {
-    height: clamp(calc(100px - 2 * ${imgBorder}), 12vh, calc(200px - 2 * ${imgBorder}));
+    height: clamp(calc(100px - 2 * ${imgBorder}), 
+            12vh, calc(200px - 2 * ${imgBorder}));
     border: ${imgBorder} solid #FFFFFF;
     box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.2);;
   }
