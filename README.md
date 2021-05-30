@@ -36,8 +36,6 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 
 ![image](https://user-images.githubusercontent.com/81252263/120116054-ad163d80-c15c-11eb-8398-3b037c38f8ee.png)
      
-
-
 </p>
 
 ### Web
@@ -45,10 +43,12 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
  <a href="" alt="Captura-de-Tela-53" border="0" /></a>
      <br/>
- <a href="" alt="Captura-de-Tela-55" border="0"></a>    
-</p>
-![image](https://user-images.githubusercontent.com/81252263/120116194-50675280-c15d-11eb-8efa-74504b7d9521.png)
+ <a href="" alt="Captura-de-Tela-55" border="0"></a>   
+ 
+ ![image](https://user-images.githubusercontent.com/81252263/120116223-86a4d200-c15d-11eb-8019-066d0de31600.png)
 
+ 
+</p>
 
 ---
 
