@@ -2,13 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Section = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 2%;
   top: 15px;
-  gap:1%;
+  gap: 1%;
   justify-items: center;
   align-items: center;
 `;
@@ -19,10 +21,10 @@ const CardCadastro = styled.div`
   justify-content: space-around;
   row-gap: 10px;
   padding: 40px;
-  height: 50vh;;
-  width:50vw;
-  justify-content:space-around;
-  text-align:center;
+  height: 50vh;
+  width: 50vw;
+  justify-content: space-around;
+  text-align: center;
 `;
 const CardServiços = styled.div`
   display: flex;
@@ -30,42 +32,43 @@ const CardServiços = styled.div`
   padding: 40px;
 `;
 const Servico = styled.div`
-display:flex;
-text-align:center;
-justify-content:space-between;
-border-radius:18px;
-border-bottom:2px solid;
-padding:2%;
-margin:2%;
-width:30vw;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  border-radius: 18px;
+  border-bottom: 2px solid;
+  padding: 2%;
+  margin: 2%;
+  width: 30vw;
 `;
-const Separar =  styled.div`
-display:flex;
-justify-content:space-around;
+const Separar = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 //----------------API-------------//
 
 const url = "https://labeninjas.herokuapp.com/jobs";
-const header = { headers: { Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a" } };
+const header = {
+  headers: { Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a" },
+};
 
 //----------------API-------------//
 
 export default class FormPrestador extends React.Component {
   state = {
-    title:          "",
-    description:    "",
-    price:          "",
+    title: "",
+    description: "",
+    price: "",
     paymentMethods: "",
-    dueDate:        "",
-    serviços:       []
+    dueDate: "",
+    serviços: [],
   };
 
   changeInputValues = (e) => {
     if (e.target.id === "pagamento")
-      this.setState({ [e.target.name]: [ e.target.value ] });
-    else
-      this.setState({ [e.target.name]: e.target.value });
+      this.setState({ [e.target.name]: [e.target.value] });
+    else this.setState({ [e.target.name]: e.target.value });
   };
 
   componentDidMount() {
@@ -77,36 +80,33 @@ export default class FormPrestador extends React.Component {
       .get(url, header)
       .then((certo) => {
         this.setState({ serviços: certo.data.jobs });
-        
       })
-      .catch((errado) => {
-        
-      });
+      .catch((errado) => {});
   };
 
   createJob = (e) => {
     const body = {
-      title:          this.state.title,
-      description:    this.state.description,
-      price:          Number(this.state.price),
+      title: this.state.title,
+      description: this.state.description,
+      price: Number(this.state.price),
       paymentMethods: this.state.paymentMethods,
-      dueDate:        this.state.dueDate
+      dueDate: this.state.dueDate,
     };
 
     axios
       .post(url, body, header)
       .then((res) => {
-        alert("Serviço cadastrado com sucesso!");
+        toast.dark("Serviço cadastrado com sucesso!");
         this.setState({
-          title:          "",
-          description:    "",
-          price:          "",
+          title: "",
+          description: "",
+          price: "",
           paymentMethods: "",
-          dueDate:        ""
+          dueDate: "",
         });
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        toast.dark(err.response.data.message);
       });
   };
 
@@ -116,11 +116,11 @@ export default class FormPrestador extends React.Component {
         .delete(`${url}/${id}`, header)
 
         .then(() => {
-          alert("Serviço deletado com sucesso!");
+          toast.dark("Serviço deletado com sucesso!");
           this.getAllJobs();
         })
         .catch((err) => {
-          alert("Erro ao deletar serviço, tente novamente")
+          toast.dark("Erro ao deletar serviço, tente novamente");
         });
   };
 
@@ -188,6 +188,17 @@ export default class FormPrestador extends React.Component {
             {/*Retorna serviços cadastrados com botão de delete */}
           </CardServiços>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Section>
     );
   }
