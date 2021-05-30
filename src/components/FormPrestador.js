@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
 
 const Section = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 100px;
+  padding: 2%;
   top: 15px;
+  gap:1%;
   justify-items: center;
   align-items: center;
 `;
-
 const CardCadastro = styled.div`
   border: 1px solid black;
   display: flex;
@@ -18,41 +19,55 @@ const CardCadastro = styled.div`
   justify-content: space-around;
   row-gap: 10px;
   padding: 40px;
-  height: 350px;
+  height: 50vh;;
+  width:50vw;
+  justify-content:space-around;
+  text-align:center;
 `;
-
 const CardServiços = styled.div`
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   padding: 40px;
 `;
+const Servico = styled.div`
+display:flex;
+text-align:center;
+justify-content:space-between;
+border-radius:18px;
+border-bottom:2px solid;
+padding:2%;
+margin:2%;
+width:30vw;
+`;
+const Separar =  styled.div`
+display:flex;
+justify-content:space-around;
+`;
+
 //----------------API-------------//
-const url = `https://labeninjas.herokuapp.com/jobs`;
-const header = {
-  headers: {
-    Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a",
-  },
-};
+
+const url = "https://labeninjas.herokuapp.com/jobs";
+const header = { headers: { Authorization: "76aaaa55-e50c-4e30-9afa-11699cef111a" } };
+
 //----------------API-------------//
 
 export default class FormPrestador extends React.Component {
   state = {
-    title: "",
-    description: "",
-    price: "",
+    title:          "",
+    description:    "",
+    price:          "",
     paymentMethods: "",
-    dueDate: "",
-    serviços: [],
+    dueDate:        "",
+    serviços:       []
   };
 
   changeInputValues = (e) => {
-    if (e.target.id === "pagamento") {
-      this.setState({ [e.target.name]: [e.target.value] });
-    } else {
+    if (e.target.id === "pagamento")
+      this.setState({ [e.target.name]: [ e.target.value ] });
+    else
       this.setState({ [e.target.name]: e.target.value });
-    }
   };
+
   componentDidMount() {
     this.getAllJobs();
   }
@@ -65,16 +80,18 @@ export default class FormPrestador extends React.Component {
         console.log(certo.data.jobs);
       })
       .catch((errado) => {
-        // console.log(errado)
+
+        //Console.log(errado)
       });
   };
+
   createJob = (e) => {
     const body = {
-      title: this.state.title,
-      description: this.state.description,
-      price: Number(this.state.price),
+      title:          this.state.title,
+      description:    this.state.description,
+      price:          Number(this.state.price),
       paymentMethods: this.state.paymentMethods,
-      dueDate: this.state.dueDate,
+      dueDate:        this.state.dueDate
     };
 
     axios
@@ -82,11 +99,11 @@ export default class FormPrestador extends React.Component {
       .then((res) => {
         alert("Serviço cadastrado com sucesso!");
         this.setState({
-          title: "",
-          description: "",
-          price: "",
+          title:          "",
+          description:    "",
+          price:          "",
           paymentMethods: "",
-          dueDate: "",
+          dueDate:        ""
         });
       })
       .catch((err) => {
@@ -95,7 +112,7 @@ export default class FormPrestador extends React.Component {
   };
 
   deleteJob = (id) => {
-    if (window.confirm("Tem certeza que quer deletar este serviço?")) {
+    if (window.confirm("Tem certeza que quer deletar este serviço?"))
       axios
         .delete(`${url}/${id}`, header)
 
@@ -106,18 +123,15 @@ export default class FormPrestador extends React.Component {
         .catch((err) => {
           console.log(err);
         });
-    }
   };
 
   render() {
-    const mostraServiços = this.state.serviços.map((serviço) => {
-      return (
-        <CardServiços key={serviço.id}>
-          {serviço.title}
-          <button onClick={() => this.deleteJob(serviço.id)}>X</button>
-        </CardServiços>
-      );
-    });
+    const mostraServiços = this.state.serviços.map((serviço) => (
+      <CardServiços key={serviço.id}>
+        {serviço.title}
+        <button onClick={() => this.deleteJob(serviço.id)}>X</button>
+      </CardServiços>
+    ));
 
     return (
       <Section>
@@ -172,7 +186,7 @@ export default class FormPrestador extends React.Component {
 
             <p>{mostraServiços}</p>
 
-            {/* retorna serviços cadastrados com botão de delete */}
+            {/*Retorna serviços cadastrados com botão de delete */}
           </CardServiços>
         </div>
       </Section>
