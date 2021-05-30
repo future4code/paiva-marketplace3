@@ -12,7 +12,7 @@
 Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela e Thiago, da turma Paiva.
 <br>
 
-<b>SITE DO PROJETO:</b> LINK DO SURGE
+<b>SITE DO PROJETO:</b> http://labeninjas.surge.sh/
 
 ---
 
