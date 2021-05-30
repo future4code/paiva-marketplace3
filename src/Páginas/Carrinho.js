@@ -44,7 +44,7 @@ const Desistir = styled.div`
 
 export default class Carrinho extends Component {
     contratou = () => {
-      alert("Serviço contratado com Sucesso");
+      alert("Serviços contratados com Sucesso");
     }
 
     Desistir = () => {
