@@ -17,12 +17,21 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 ---
 
 ## ⚙️ Funcionalidades
+- [X] Botão da tela inicioal para a pagina Prestador de Serviço, está funcionando.
+- [X] Botão da tela inicioal para a pagina Contratante, está funcionado.
+- [X] Adição de Serviços na pagina Prestador para a pagina de Contratantes. 
+- [X] Atualização de serviços cadastrados funcionando.
+- [ ] Botão de Adicionar ao Carrinha nao esta funcionando. 
+- [X] Botão de voltar as paginas anteriores está funionando.
+- [X] Botao de Voltar para pagina iniciona está funionando.
+- [ ] Icones da pagina Contratante, não estão funcionando.
+- [ ] Filtro de busca por nome e valor maximo é minimo,ordenaçao não esta funionado. 
+- [X] Botão Contratar esta funcionando. 
+- [X] Botão de Desistir esta Funcionando.
+- [ ] Filtro de busca por nome e valor maximo é minimo,ordenaçao não esta funionado. 
+- [X] Responsividade na tela inicial.
+- [X] Responsividade no Header e no Footer.
 
-- Adição de Serviços na pagina Prestador para a pagina de Contratantes 
-- [x]
-- [x]
-- [x]
-- [x] Responsividade;somente na tela inicial
 
 ---
 
@@ -45,8 +54,7 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
      <br/>
  <a href="" alt="Captura-de-Tela-55" border="0"></a>   
  
- ![image](https://user-images.githubusercontent.com/81252263/120116223-86a4d200-c15d-11eb-8019-066d0de31600.png)
-
+![image](https://user-images.githubusercontent.com/81252263/120116718-d8e6f280-c15f-11eb-8b03-8990a8c2c7ea.png)
  
 </p>
 
@@ -57,6 +65,11 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 As seguintes ferramentas foram usadas na construção do projeto:
 
 #### [React](https://reactjs.org/)
+- lucid app
+- Slack
+- Trello
+- Meet
+- 
 
 ---
 
