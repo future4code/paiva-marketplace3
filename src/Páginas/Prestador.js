@@ -4,17 +4,32 @@ import styled from "styled-components";
 import FormPrestador from "../components/FormPrestador";
 import { listarServiços, removerServiço } from "../api";
 
-const Voltar = styled.section``;
+const Main = styled.main`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2%;
+  top: 15px;
+  gap:1%;
+  justify-items: center;
+  align-items: center;
+`;
+
+const Voltar = styled.section`
+  grid-column: 1 / span 2;
+`;
 
 const Serviço = styled.section`
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  padding: 40px;
+  display:flex;
+  text-align:center;
+  justify-content:space-between;
+  border-radius:18px;
+  border-bottom:2px solid;
+  padding:2%;
+  margin:2%;
+  width:30vw;
 `;
 
 const Serviços = styled.article`
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   padding: 40px;
@@ -64,7 +79,7 @@ export default class Prestador extends Component {
     ));
 
     return (
-      <main>
+      <Main>
         <Voltar>
           <Button
             variant="contained"
@@ -79,7 +94,7 @@ export default class Prestador extends Component {
           <h2>SERVIÇOS CADASTRADOS</h2>
           {mostraServiços}
         </Serviços>
-      </main>
+      </Main>
     );
   }
 }

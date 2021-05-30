@@ -9,13 +9,17 @@ import Chip from "@material-ui/core/Chip";
 import MenuItem from "@material-ui/core/MenuItem";
 import { criarServiço } from "../api";
 
-const Cadastro = styled.section`
+const Cadastro = styled.div`
   border: 1px solid black;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 1fr;
-  row-gap: 16px;
-  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  row-gap: 10px;
+  padding: 40px;
+  height: 50vh;
+  width:50vw;
+  justify-content:space-around;
+  text-align:center;
 `;
 
 export default class FormPrestador extends React.Component {
