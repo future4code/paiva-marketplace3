@@ -18,12 +18,11 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 
 ## ⚙️ Funcionalidades
 
+- Adição de Serviços na pagina Prestador para a pagina de Contratantes 
 - [x]
 - [x]
 - [x]
-- [x]
-- [x]
-- [x] Responsividade;
+- [x] Responsividade;somente na tela inicial
 
 ---
 
@@ -34,6 +33,8 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
      <a href="g" alt="5458713e-2c2c-4109-b14f-b1c48cdcddcc" border="0"></a>
      <a href="" alt="c4913d08-c8cb-4d4d-968e-b97971a2d8f6" border="0"></a>
+![image](https://user-images.githubusercontent.com/81252263/120115615-d635ce80-c15a-11eb-87b7-6b0449514d2e.png)
+  
      
 
 
@@ -46,6 +47,7 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
      <br/>
  <a href="" alt="Captura-de-Tela-55" border="0"></a>    
 </p>
+![image](https://user-images.githubusercontent.com/81252263/120115550-8fe06f80-c15a-11eb-8a41-4a53e9a47f29.png)
 
 ---
 
