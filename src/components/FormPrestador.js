@@ -62,10 +62,10 @@ export default class FormPrestador extends React.Component {
       .get(url, header)
       .then((certo) => {
         this.setState({ serviços: certo.data.jobs });
-        console.log(certo.data.jobs);
+        
       })
       .catch((errado) => {
-        // console.log(errado)
+        
       });
   };
   createJob = (e) => {
@@ -104,7 +104,7 @@ export default class FormPrestador extends React.Component {
           this.getAllJobs();
         })
         .catch((err) => {
-          console.log(err);
+          alert("Erro ao deletar serviço, tente novamente")
         });
     }
   };
