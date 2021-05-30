@@ -17,20 +17,14 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 ---
 
 ## ⚙️ Funcionalidades
-- [X] Botão da tela inicioal para a pagina Prestador de Serviço, está funcionando.
-- [X] Botão da tela inicioal para a pagina Contratante, está funcionado.
-- [X] Adição de Serviços na pagina Prestador para a pagina de Contratantes. 
-- [X] Atualização de serviços cadastrados funcionando.
-- [ ] Botão de Adicionar ao Carrinha nao esta funcionando. 
-- [X] Botão de voltar as paginas anteriores está funionando.
-- [X] Botao de Voltar para pagina iniciona está funionando.
-- [ ] Icones da pagina Contratante, não estão funcionando.
-- [ ] Filtro de busca por nome e valor maximo é minimo,ordenaçao não esta funionado. 
-- [X] Botão Contratar esta funcionando. 
-- [X] Botão de Desistir esta Funcionando.
-- [ ] Filtro de busca por nome e valor maximo é minimo,ordenaçao não esta funionado. 
-- [X] Responsividade na tela inicial.
-- [X] Responsividade no Header e no Footer.
+- [X] Cadastrar serviço a ser oferecido;
+- [X] Deletar serviços cadastrados;
+- [X] Visualizar serviços cadastrados; 
+- [ ] Filtrar serviços oferecidos;
+- [ ] Adicionar serviços ao carrinho de compras;
+- [X] Efetuar compra dos serviços adicionados ao carrinho;
+- [X] Desistir do serviço adicionado ao carrinho; 
+- [X] Responsividade;
 
 
 ---
