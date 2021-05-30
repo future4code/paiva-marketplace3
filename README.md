@@ -59,11 +59,7 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 As seguintes ferramentas foram usadas na construção do projeto:
 
 #### [React](https://reactjs.org/)
-- lucid app
-- Slack
-- Trello
-- Meet
-- 
+
 
 ---
 
