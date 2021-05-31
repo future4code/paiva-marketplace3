@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BodyCarrinho = styled.body`
   display: flex;
@@ -13,14 +13,17 @@ const BodyCarrinho = styled.body`
 
 const CardProposta = styled.div`
   display: grid;
+  margin-top: 50px;
+  padding: 10px;
   justify-content: space-around;
   box-shadow: 2px 5px 5px;
-  width: 40vw;
-  height: 50vh;
+  width: 20vw;
+  height: 20vh;
 `;
 
 const CardPagamento = styled.div`
   display: grid;
+  margin-top: 50px;
   width: 20vw;
   height: 50vh;
 `;
@@ -45,6 +48,19 @@ const Desistir = styled.div`
 `;
 
 export default class Carrinho extends Component {
+  state = {
+    carrinho: [],
+  };
+
+  componentDidMount() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    this.setState({ carrinho });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho));
+  }
+
   contratou = () => {
     toast.dark("Serviços contratados com sucesso 🐱‍👤");
   };
@@ -54,19 +70,26 @@ export default class Carrinho extends Component {
   };
 
   render() {
+    console.log(this.state.carrinho);
+    const mostraCarrinho = this.state.carrinho.map((serviço) => (
+      <CardProposta>
+        <h3>Serviço: {serviço.title}</h3>
+        <Resumo>
+          <h6>Descrição: {serviço.description}</h6>
+          <h6>Valor: R${serviço.price}</h6>
+          <h6>Prazo: {serviço.dueDate}</h6>
+          <h6>Forma de pagamento: {serviço.paymentMethods} </h6>
+        </Resumo>
+        
+      </CardProposta>
+      
+    ));
+
     return (
       <div>
         <BodyCarrinho>
           <header />
-          <CardProposta>
-            <h3>Revise a Proposta:</h3>
-            <Resumo>
-              <h6>Serviço:</h6>
-              <h6>Descrição:</h6>
-              <h6>Valor:</h6>
-              <h6>Prazo:</h6>
-            </Resumo>
-          </CardProposta>
+          {mostraCarrinho}
 
           <CardPagamento>
             <h3>Método de Pagamento</h3>
