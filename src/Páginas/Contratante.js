@@ -7,6 +7,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import { listarServiços } from "../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Filtro = styled.section`
   border: 1px solid black;
@@ -49,14 +51,14 @@ const BotaoCarrinho = styled.div`
 
 export default class Contratante extends Component {
   state = {
-    serviços:  [],
-    carrinho:  [],
-    mínimo:    "",
-    máximo:    "",
-    título:    "",
+    serviços: [],
+    carrinho: [],
+    mínimo: "",
+    máximo: "",
+    título: "",
     descrição: "",
-    ordernar:  "Título A-Z"
-  }
+    ordernar: "Título A-Z",
+  };
 
   componentDidMount() {
     this.listarServiços();
@@ -76,36 +78,39 @@ export default class Contratante extends Component {
       .catch((errado) => {
         alert(`Erro ao pegar os serviços\nErro:${JSON.stringify(errado)}`);
       });
-  }
+  };
 
   filtro = (serviço) => {
-    const {
-      title, price, taken, description
-    } = serviço;
+    const { title, price, taken, description } = serviço;
 
     let mínimo = Number(this.state.mínimo);
     let máximo = Number(this.state.máximo);
     const título = new RegExp(this.state.título, "i");
     const descrição = new RegExp(this.state.descrição, "i");
 
-    if (!mínimo || mínimo < 0)
-      mínimo = -Infinity;
+    if (!mínimo || mínimo < 0) mínimo = -Infinity;
 
-    if (!máximo || mínimo > máximo || máximo <= 0)
-      máximo = Infinity;
+    if (!máximo || mínimo > máximo || máximo <= 0) máximo = Infinity;
 
-    return !taken && price >= mínimo && price <= máximo && title.match(título)
-           && description.match(descrição);
-  }
+    return (
+      !taken &&
+      price >= mínimo &&
+      price <= máximo &&
+      title.match(título) &&
+      description.match(descrição)
+    );
+  };
 
   ordernar = (serviçoA, serviçoB) => {
     if (this.state.ordernar === "Título A-Z")
-      return serviçoA.title
-        .localeCompare(serviçoB.title, { ignorePunctuation: true });
+      return serviçoA.title.localeCompare(serviçoB.title, {
+        ignorePunctuation: true,
+      });
 
     if (this.state.ordernar === "Título Z-A")
-      return serviçoB.title
-        .localeCompare(serviçoA.title, { ignorePunctuation: true });
+      return serviçoB.title.localeCompare(serviçoA.title, {
+        ignorePunctuation: true,
+      });
 
     if (this.state.ordernar === "Valor Crescente")
       return serviçoA.price - serviçoB.price;
@@ -118,7 +123,7 @@ export default class Contratante extends Component {
 
     if (this.state.ordernar === "Prazo Decrescente")
       return new Date(serviçoB.date) - new Date(serviçoA.date);
-  }
+  };
 
   changeInputValues = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -129,20 +134,21 @@ export default class Contratante extends Component {
       return this.removerDoCarrinho(serviço.id);
 
     return this.adicionarNoCarrinho(serviço);
-  }
+  };
 
   removerDoCarrinho = (id) => {
-    if (!confirm("Certeza Que Desja Remover o Serviço Do Carrinho?"))
+    if (!window.confirm("Tem certeza que deseja remover o item do carrinho?"))
       return;
 
     const carrinho = this.state.carrinho.filter((serviço) => serviço.id !== id);
     this.setState({ carrinho });
-  }
+    toast.dark("Item removido com sucesso")
+  };
 
   adicionarNoCarrinho = (serviço) => {
-    this.setState({ carrinho: [ ...this.state.carrinho, serviço ] });
-    return alert("Serviço Adicionado No Carrinho");
-  }
+    this.setState({ carrinho: [...this.state.carrinho, serviço] });
+    return toast.dark("Serviço adicionado ao carrinho 🛒🐱‍👤");
+  };
 
   render() {
     const mostraServiços = this.state.serviços
@@ -153,10 +159,15 @@ export default class Contratante extends Component {
           <h4>{serviço.title}</h4>
           <h4>{serviço.description}</h4>
           <p>{`R$ ${serviço.price}`}</p>
-          <Button variant="contained" onClick={() => this.lidarCarrinho(serviço)}>
-            {`${this.state.carrinho.find((carrinho) => carrinho.id === serviço.id)
-              ? "Remover do"
-              : "Adicionar ao"} carrinho`}
+          <Button
+            variant="contained"
+            onClick={() => this.lidarCarrinho(serviço)}
+          >
+            {`${
+              this.state.carrinho.find((carrinho) => carrinho.id === serviço.id)
+                ? "Remover do"
+                : "Adicionar ao"
+            } carrinho`}
           </Button>
         </Card>
       ));
@@ -203,9 +214,7 @@ export default class Contratante extends Component {
         </Filtro>
         <Ordernação>
           <FormControl>
-            <InputLabel id="ordenação-label">
-              Ordernação
-            </InputLabel>
+            <InputLabel id="ordenação-label">Ordernação</InputLabel>
             <Select
               variant="outlined"
               labelId="ordenação-label"
@@ -214,7 +223,9 @@ export default class Contratante extends Component {
               value={this.state.ordernar}
               onChange={this.changeInputValues}
             >
-              <MenuItem disabled value=""><em>Ordenar Por</em></MenuItem>
+              <MenuItem disabled value="">
+                <em>Ordenar Por</em>
+              </MenuItem>
               <MenuItem value="Título A-Z">Título A-Z</MenuItem>
               <MenuItem value="Título Z-A">Título Z-A</MenuItem>
               <MenuItem value="Valor Crescente">Valor Crescente</MenuItem>
@@ -230,6 +241,17 @@ export default class Contratante extends Component {
           </Button>
         </BotaoCarrinho>
         {mostraServiços}
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </main>
     );
   }
