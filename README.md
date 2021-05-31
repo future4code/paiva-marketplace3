@@ -20,8 +20,8 @@ Foi desenvolvido durante uma semana pelos alunos Janaina, Júllia, Laura, Pamela
 - [X] Cadastrar serviço a ser oferecido;
 - [X] Deletar serviços cadastrados;
 - [X] Visualizar serviços cadastrados; 
-- [ ] Filtrar serviços oferecidos;
-- [ ] Adicionar serviços ao carrinho de compras;
+- [X] Filtrar serviços oferecidos;
+- [X] Adicionar serviços ao carrinho de compras;
 - [X] Efetuar compra dos serviços adicionados ao carrinho;
 - [X] Desistir do serviço adicionado ao carrinho; 
 - [X] Responsividade;
