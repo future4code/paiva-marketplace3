@@ -8,6 +8,8 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import MenuItem from "@material-ui/core/MenuItem";
 import { criarServiço } from "../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cadastro = styled.div`
   border: 1px solid black;
@@ -17,18 +19,18 @@ const Cadastro = styled.div`
   row-gap: 10px;
   padding: 40px;
   height: 50vh;
-  width:50vw;
-  justify-content:space-around;
-  text-align:center;
+  width: 50vw;
+  justify-content: space-around;
+  text-align: center;
 `;
 
 export default class FormPrestador extends React.Component {
   state = {
-    title:          "",
-    description:    "",
-    price:          "",
+    title: "",
+    description: "",
+    price: "",
     paymentMethods: [],
-    dueDate:        (new Date).toISOString().split("T")[0]
+    dueDate: new Date().toISOString().split("T")[0],
   };
 
   changeInputValues = (event) => {
@@ -37,22 +39,22 @@ export default class FormPrestador extends React.Component {
 
   criarServiço = () => {
     const body = {
-      title:          this.state.title,
-      description:    this.state.description,
-      price:          Number(this.state.price),
+      title: this.state.title,
+      description: this.state.description,
+      price: Number(this.state.price),
       paymentMethods: this.state.paymentMethods,
-      dueDate:        this.state.dueDate
+      dueDate: this.state.dueDate,
     };
 
     criarServiço(body)
       .then(() => {
-        alert("Serviço cadastrado com sucesso!");
+        toast.dark("Serviço cadastrado com sucesso!");
         this.setState({
-          title:          "",
-          description:    "",
-          price:          "",
+          title: "",
+          description: "",
+          price: "",
           paymentMethods: [],
-          dueDate:        (new Date).toISOString().split("T")[0]
+          dueDate: new Date().toISOString().split("T")[0],
         });
         this.props.listarServiços();
       })
@@ -91,9 +93,7 @@ export default class FormPrestador extends React.Component {
           variant="outlined"
         />
         <FormControl>
-          <InputLabel id="pagamento-label">
-            Forma De Pagamento
-          </InputLabel>
+          <InputLabel id="pagamento-label">Forma De Pagamento</InputLabel>
           <Select
             variant="outlined"
             labelId="pagamento-label"
@@ -104,11 +104,15 @@ export default class FormPrestador extends React.Component {
             onChange={this.changeInputValues}
             renderValue={(selected) => (
               <div>
-                {selected.map((value) => <Chip key={value} label={value}/>)}
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
               </div>
             )}
           >
-            <MenuItem disabled value=""><em>Forma De Pagemnto</em></MenuItem>
+            <MenuItem disabled value="">
+              <em>Forma De Pagemnto</em>
+            </MenuItem>
             <MenuItem value="Dinheiro">Dinheiro</MenuItem>
             <MenuItem value="Cartão de Débito">Cartão de Débito</MenuItem>
             <MenuItem value="Cartão de Crédito">Cartão de Crédito</MenuItem>
@@ -123,13 +127,20 @@ export default class FormPrestador extends React.Component {
           value={this.state.dueDate}
           onChange={this.changeInputValues}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.criarServiço}
-        >
+        <Button variant="contained" color="primary" onClick={this.criarServiço}>
           Cadastrar serviços
         </Button>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Cadastro>
     );
   }

@@ -9,7 +9,7 @@ const Main = styled.main`
   grid-template-columns: 1fr 1fr;
   padding: 2%;
   top: 15px;
-  gap:1%;
+  gap: 1%;
   justify-items: center;
   align-items: center;
 `;
@@ -19,14 +19,14 @@ const Voltar = styled.section`
 `;
 
 const Serviço = styled.section`
-  display:flex;
-  text-align:center;
-  justify-content:space-between;
-  border-radius:18px;
-  border-bottom:2px solid;
-  padding:2%;
-  margin:2%;
-  width:30vw;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  border-radius: 18px;
+  border-bottom: 2px solid;
+  padding: 2%;
+  margin: 2%;
+  width: 30vw;
 `;
 
 const Serviços = styled.article`
@@ -36,9 +36,11 @@ const Serviços = styled.article`
 `;
 
 export default class Prestador extends Component {
-  state = { serviços: [] }
+  state = { serviços: [] };
 
-  componentDidMount() { this.listarServiços(); }
+  componentDidMount() {
+    this.listarServiços();
+  }
 
   listarServiços = () => {
     listarServiços()
@@ -46,23 +48,26 @@ export default class Prestador extends Component {
         this.setState({ serviços: resposta.data.jobs });
       })
       .catch((erro) => {
-        alert(`Erro ao listar os serviços\nErro: ${erro.response.data.message}`);
+        alert(
+          `Erro ao listar os serviços\nErro: ${erro.response.data.message}`
+        );
       });
-  }
+  };
 
   removerServiço = (id) => {
-    if (!confirm("Certeza Que Deseja Remover O Serviço"))
-      return;
-
-    removerServiço(id)
-      .then(() => {
-        alert("Serviço Removido Com Sucesso");
-        this.listarServiços();
-      })
-      .catch((erro) => {
-        alert(`Erro ao remover o serviço\nErro: ${erro.response.data.message}`);
-      });
-  }
+    if (window.confirm("Tem certeza que deseja remover o serviço?")) {
+      removerServiço(id)
+        .then(() => {
+          alert("Serviço removido com sucesso");
+          this.listarServiços();
+        })
+        .catch((erro) => {
+          alert(
+            `Erro ao remover o serviço\nErro: ${erro.response.data.message}`
+          );
+        });
+    }
+  };
 
   render() {
     const mostraServiços = this.state.serviços.map((serviço) => (
@@ -89,7 +94,7 @@ export default class Prestador extends Component {
             Voltar para Página Inicial
           </Button>
         </Voltar>
-        <FormPrestador listarServiços={this.listarServiços}/>
+        <FormPrestador listarServiços={this.listarServiços} />
         <Serviços>
           <h2>SERVIÇOS CADASTRADOS</h2>
           {mostraServiços}
