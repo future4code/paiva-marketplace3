@@ -69,18 +69,10 @@ export default class Inicial extends Component {
 
           </article>
           <ButtonContainer>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.props.irParaPrestador}
-            >
+            <Button variant="contained" onClick={this.props.irParaPrestador}>
               Prestador de serviços
             </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.props.irParaContratante}
-            >
+            <Button variant="contained" onClick={this.props.irParaContratante}>
               Contratante
             </Button>
           </ButtonContainer>

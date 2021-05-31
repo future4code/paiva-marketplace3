@@ -48,25 +48,20 @@ export default class Prestador extends Component {
         this.setState({ serviços: resposta.data.jobs });
       })
       .catch((erro) => {
-        alert(
-          `Erro ao listar os serviços\nErro: ${erro.response.data.message}`
-        );
+        alert(`Erro ao listar os serviços\nErro: ${erro.response.data.message}`);
       });
   };
 
   removerServiço = (id) => {
-    if (window.confirm("Tem certeza que deseja remover o serviço?")) {
+    if (window.confirm("Tem certeza que deseja remover o serviço?"))
       removerServiço(id)
         .then(() => {
           alert("Serviço removido com sucesso");
           this.listarServiços();
         })
         .catch((erro) => {
-          alert(
-            `Erro ao remover o serviço\nErro: ${erro.response.data.message}`
-          );
+          alert(`Erro ao remover o serviço\nErro: ${erro.response.data.message}`);
         });
-    }
   };
 
   render() {
@@ -74,9 +69,9 @@ export default class Prestador extends Component {
       <Serviço key={serviço.id}>
         <p>{serviço.title}</p>
         <Button
-          onClick={() => this.removerServiço(serviço.id)}
           variant="contained"
           color="secondary"
+          onClick={() => this.removerServiço(serviço.id)}
         >
           Remover
         </Button>
@@ -86,15 +81,11 @@ export default class Prestador extends Component {
     return (
       <Main>
         <Voltar>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.props.irParaInício}
-          >
+          <Button variant="contained" onClick={this.props.irParaInício}>
             Voltar para Página Inicial
           </Button>
         </Voltar>
-        <FormPrestador listarServiços={this.listarServiços} />
+        <FormPrestador listarServiços={this.listarServiços}/>
         <Serviços>
           <h2>SERVIÇOS CADASTRADOS</h2>
           {mostraServiços}

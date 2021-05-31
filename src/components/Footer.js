@@ -50,6 +50,10 @@ const RedeSociais = styled.section`
   max-width: 600px;
   grid-row: 1;
 
+  a {
+    color: inherit;
+  }
+
   svg {
     height: clamp(24px, 4vh, 48px);
     min-width: 24px;
@@ -83,10 +87,10 @@ export default function Footer() {
           <h4> Avenida Paulista - São Paulo/SP - Brasil</h4>
         </Endereco>
         <RedeSociais>
-          <FacebookIcon/>
-          <InstagramIcon/>
-          <TwitterIcon/>
-          <LinkedInIcon/>
+          <a href="https://facebook.com"><FacebookIcon/></a>
+          <a href="https://instagram.com"><InstagramIcon/></a>
+          <a href="https://twitter.com"><TwitterIcon/></a>
+          <a href="https://linkedin.com"><LinkedInIcon/></a>
         </RedeSociais>
         <Contato>
           <h3>Fale conosco: 0800 000 000</h3>

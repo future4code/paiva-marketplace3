@@ -8,7 +8,6 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import { listarServiços } from "../api";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Filtro = styled.section`
   border: 1px solid black;
@@ -51,13 +50,13 @@ const BotaoCarrinho = styled.div`
 
 export default class Contratante extends Component {
   state = {
-    serviços: [],
-    carrinho: [],
-    mínimo: "",
-    máximo: "",
-    título: "",
+    serviços:  [],
+    carrinho:  [],
+    mínimo:    "",
+    máximo:    "",
+    título:    "",
     descrição: "",
-    ordernar: "Título A-Z",
+    ordernar:  "Título A-Z"
   };
 
   componentDidMount() {
@@ -81,36 +80,38 @@ export default class Contratante extends Component {
   };
 
   filtro = (serviço) => {
-    const { title, price, taken, description } = serviço;
+    const {
+      title, price, taken, description
+    } = serviço;
 
     let mínimo = Number(this.state.mínimo);
     let máximo = Number(this.state.máximo);
     const título = new RegExp(this.state.título, "i");
     const descrição = new RegExp(this.state.descrição, "i");
 
-    if (!mínimo || mínimo < 0) mínimo = -Infinity;
+    if (!mínimo || mínimo < 0)
+      mínimo = -Infinity;
 
-    if (!máximo || mínimo > máximo || máximo <= 0) máximo = Infinity;
+    if (!máximo || mínimo > máximo || máximo <= 0)
+      máximo = Infinity;
 
     return (
-      !taken &&
-      price >= mínimo &&
-      price <= máximo &&
-      title.match(título) &&
-      description.match(descrição)
+      !taken
+      && price >= mínimo
+      && price <= máximo
+      && title.match(título)
+      && description.match(descrição)
     );
   };
 
   ordernar = (serviçoA, serviçoB) => {
     if (this.state.ordernar === "Título A-Z")
-      return serviçoA.title.localeCompare(serviçoB.title, {
-        ignorePunctuation: true,
-      });
+      return serviçoA.title
+        .localeCompare(serviçoB.title, { ignorePunctuation: true });
 
     if (this.state.ordernar === "Título Z-A")
-      return serviçoB.title.localeCompare(serviçoA.title, {
-        ignorePunctuation: true,
-      });
+      return serviçoB.title
+        .localeCompare(serviçoA.title, { ignorePunctuation: true });
 
     if (this.state.ordernar === "Valor Crescente")
       return serviçoA.price - serviçoB.price;
@@ -119,10 +120,10 @@ export default class Contratante extends Component {
       return serviçoB.price - serviçoA.price;
 
     if (this.state.ordernar === "Prazo Crescente")
-      return new Date(serviçoA.date) - new Date(serviçoB.date);
+      return new Date(serviçoA.dueDate) - new Date(serviçoB.dueDate);
 
     if (this.state.ordernar === "Prazo Decrescente")
-      return new Date(serviçoB.date) - new Date(serviçoA.date);
+      return new Date(serviçoB.dueDate) - new Date(serviçoA.dueDate);
   };
 
   changeInputValues = (event) => {
@@ -142,36 +143,32 @@ export default class Contratante extends Component {
 
     const carrinho = this.state.carrinho.filter((serviço) => serviço.id !== id);
     this.setState({ carrinho });
-    toast.dark("Item removido com sucesso")
+    toast.dark("Item removido com sucesso");
   };
 
   adicionarNoCarrinho = (serviço) => {
-    this.setState({ carrinho: [...this.state.carrinho, serviço] });
+    this.setState({ carrinho: [ ...this.state.carrinho, serviço ] });
     return toast.dark("Serviço adicionado ao carrinho 🛒🐱‍👤");
   };
 
-  render() {
-    const mostraServiços = this.state.serviços
-      .filter(this.filtro)
-      .sort(this.ordernar)
-      .map((serviço) => (
-        <Card key={serviço.id}>
-          <h4>{serviço.title}</h4>
-          <h4>{serviço.description}</h4>
-          <p>{`R$ ${serviço.price}`}</p>
-          <Button
-            variant="contained"
-            onClick={() => this.lidarCarrinho(serviço)}
-          >
-            {`${
-              this.state.carrinho.find((carrinho) => carrinho.id === serviço.id)
-                ? "Remover do"
-                : "Adicionar ao"
-            } carrinho`}
-          </Button>
-        </Card>
-      ));
+  mostraServiços = () => this.state.serviços.filter(this.filtro)
+    .sort(this.ordernar)
+    .map((serviço) => (
+      <Card key={serviço.id}>
+        <h3>{serviço.title}</h3>
+        <h4>{serviço.description}</h4>
+        <p>{`R$ ${serviço.price}`}</p>
+        <p>{new Date(serviço.dueDate).toLocaleDateString()}</p>
+        <Button variant="contained" onClick={() => this.lidarCarrinho(serviço)}>
+          {`${this.state.carrinho.find((carrinho) => carrinho.id === serviço.id)
+            ? "Remover do"
+            : "Adicionar ao"
+          } carrinho`}
+        </Button>
+      </Card>
+    ))
 
+  render() {
     return (
       <main>
         <Button variant="contained" onClick={this.props.irParaInício}>
@@ -240,7 +237,7 @@ export default class Contratante extends Component {
             Ver Carrinho
           </Button>
         </BotaoCarrinho>
-        {mostraServiços}
+        {this.mostraServiços()}
         <ToastContainer
           position="top-center"
           autoClose={2000}

@@ -26,11 +26,11 @@ const Cadastro = styled.div`
 
 export default class FormPrestador extends React.Component {
   state = {
-    title: "",
-    description: "",
-    price: "",
+    title:          "",
+    description:    "",
+    price:          "",
     paymentMethods: [],
-    dueDate: new Date().toISOString().split("T")[0],
+    dueDate:        new Date().toISOString().split("T")[0]
   };
 
   changeInputValues = (event) => {
@@ -39,22 +39,22 @@ export default class FormPrestador extends React.Component {
 
   criarServiço = () => {
     const body = {
-      title: this.state.title,
-      description: this.state.description,
-      price: Number(this.state.price),
+      title:          this.state.title,
+      description:    this.state.description,
+      price:          Number(this.state.price),
       paymentMethods: this.state.paymentMethods,
-      dueDate: this.state.dueDate,
+      dueDate:        this.state.dueDate
     };
 
     criarServiço(body)
       .then(() => {
         toast.dark("Serviço cadastrado com sucesso!");
         this.setState({
-          title: "",
-          description: "",
-          price: "",
+          title:          "",
+          description:    "",
+          price:          "",
           paymentMethods: [],
-          dueDate: new Date().toISOString().split("T")[0],
+          dueDate:        new Date().toISOString().split("T")[0]
         });
         this.props.listarServiços();
       })
@@ -104,9 +104,7 @@ export default class FormPrestador extends React.Component {
             onChange={this.changeInputValues}
             renderValue={(selected) => (
               <div>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
+                {selected.map((value) => <Chip key={value} label={value}/>)}
               </div>
             )}
           >

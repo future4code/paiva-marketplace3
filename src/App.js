@@ -76,7 +76,7 @@ class App extends Component {
 
       return (
         <Body>
-          <Header/>
+          <Header irParaInício={this.irParaInício}/>
           {página}
           <Footer/>
         </Body>
