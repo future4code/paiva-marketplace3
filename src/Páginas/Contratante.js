@@ -137,11 +137,12 @@ export default class Contratante extends Component {
   };
 
   removerDoCarrinho = (id) => {
-    if (!window.confirm("Tem certeza que deseja remover o item do carrinho??"))
+    if (!window.confirm("Tem certeza que deseja remover o item do carrinho?"))
       return;
 
     const carrinho = this.state.carrinho.filter((serviço) => serviço.id !== id);
     this.setState({ carrinho });
+    toast.dark("Item removido com sucesso")
   };
 
   adicionarNoCarrinho = (serviço) => {
