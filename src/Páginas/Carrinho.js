@@ -65,18 +65,23 @@ export default class Carrinho extends Component {
     toast.dark("Serviços contratados com sucesso 🐱‍👤");
   };
 
-  Desistir = () => {
-    window.confirm("Tem certeza que deseja desistir da proposta?");
+  desistir = (id) => {
+    if (!window.confirm("Tem certeza que deseja remover o item do carrinho?"))
+      return;
+
+    const carrinho = this.state.carrinho.filter((serviço) => serviço.id === id);
+    this.setState({ carrinho });
+    toast.dark("Itens removidos com sucesso")
   };
 
   render() {
     console.log(this.state.carrinho);
     const mostraCarrinho = this.state.carrinho.map((serviço) => (
-      <CardProposta>
+      <CardProposta key={serviço.id}>
         <h3>Serviço: {serviço.title}</h3>
         <Resumo>
           <h6>Descrição: {serviço.description}</h6>
-          <h6>Valor: R${serviço.price}</h6>
+          <h6>Valor: R$ {serviço.price}</h6>
           <h6>Prazo: {serviço.dueDate}</h6>
           <h6>Forma de pagamento: {serviço.paymentMethods} </h6>
         </Resumo>
@@ -94,7 +99,7 @@ export default class Carrinho extends Component {
           <CardPagamento>
             <h3>Método de Pagamento</h3>
             <select>
-              <option>escolha</option>
+              <option>Escolha o método:</option>
               <option>Cartão Débito</option>
               <option>Boleto</option>
               <option>Pix</option>
@@ -102,7 +107,7 @@ export default class Carrinho extends Component {
             </select>
             <br />
             <h3>Valor Total</h3>
-            <p>R$ 00,00</p>
+            <p>R$ 0,00</p>
             <Desistir>
               <Button
                 variant="contained"
@@ -116,8 +121,8 @@ export default class Carrinho extends Component {
         </BodyCarrinho>
 
         <Desistir>
-          <Button variant="contained" color="secundary" onClick={this.Desistir}>
-            Desistir
+          <Button variant="contained" color="secundary" onClick={this.desistir}>
+            Desistir das propostas
           </Button>
         </Desistir>
 
