@@ -1,60 +1,59 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-const BodyCarrinho = styled.body`
+const Propostas = styled.section`
   display: flex;
   align-content: center;
-  justify-content: space-around;
-  height: 60vh;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
-const CardProposta = styled.div`
+const Proposta = styled.article`
   display: grid;
-  margin-top: 50px;
+  margin: 16px;
   padding: 10px;
-  justify-content: space-around;
+  grid-gap: 10px;
+  justify-items: center; 
   box-shadow: 2px 5px 5px;
-  width: 20vw;
-  height: 20vh;
+  width: 250px;
+
+  .select {
+    width: 100%;
+  }
+
+  .center {
+    margin: 0 auto;
+    align-self: center;
+  }
 `;
 
-const CardPagamento = styled.div`
-  display: grid;
-  margin-top: 50px;
-  width: 20vw;
-  height: 50vh;
+const Total = styled.section`
+  margin: 16px;
 `;
 
-const Resumo = styled.div`
-  display: grid;
-  justify-items: space-around;
-  padding: 0%;
-  margin: 0%;
-`;
+const Voltar = styled.section``;
 
-const Voltar = styled.div`
-  display: grid;
-  margin: 10%;
-  justify-content: right;
-`;
-
-const Desistir = styled.div`
-  text-align: center;
-  width: 8vw;
-  margin: auto;
-`;
+const Desistir = styled.section``;
 
 export default class Carrinho extends Component {
   state = {
-    carrinho: [],
+    carrinho:      [],
+    paymentMethod: []
   };
 
   componentDidMount() {
     const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    this.setState({ carrinho });
+    const paymentMethod = carrinho.map(() => "");
+    this.setState({
+      carrinho,
+      paymentMethod
+    });
   }
 
   componentDidUpdate() {
@@ -65,75 +64,90 @@ export default class Carrinho extends Component {
     toast.dark("Serviços contratados com sucesso 🐱‍👤");
   };
 
+  mudarPagamento = (index, event) => {
+    const paymentMethod = [ ...this.state.paymentMethod ];
+    paymentMethod[index] = event.target.value;
+    this.setState({ paymentMethod });
+  }
+
+  desistirTudo = () => {
+    if (!window
+      .confirm("Tem certeza que deseja remover todos os itens do carrinho?"))
+      return;
+
+    this.setState({ carrinho: [] });
+    toast.dark("Itens removidos com sucesso");
+  }
+
   desistir = (id) => {
     if (!window.confirm("Tem certeza que deseja remover o item do carrinho?"))
       return;
 
-    const carrinho = this.state.carrinho.filter((serviço) => serviço.id === id);
+    const carrinho = this.state.carrinho.filter((serviço) => serviço.id !== id);
     this.setState({ carrinho });
-    toast.dark("Itens removidos com sucesso")
+    toast.dark("Item removido com sucesso");
   };
 
-  render() {
-    console.log(this.state.carrinho);
-    const mostraCarrinho = this.state.carrinho.map((serviço) => (
-      <CardProposta key={serviço.id}>
-        <h3>Serviço: {serviço.title}</h3>
-        <Resumo>
-          <h6>Descrição: {serviço.description}</h6>
-          <h6>Valor: R$ {serviço.price}</h6>
-          <h6>Prazo: {serviço.dueDate}</h6>
-          <h6>Forma de pagamento: {serviço.paymentMethods} </h6>
-        </Resumo>
-        
-      </CardProposta>
-      
+  ordernar = (serviçoA, serviçoB) => serviçoA.title
+    .localeCompare(serviçoB.title, { ignorePunctuation: true })
+
+  carrinhoDosServiços = () => this.state.carrinho
+    .sort(this.ordernar)
+    .map((serviço, index) => (
+      <Proposta key={serviço.id}>
+        <h3>{serviço.title}</h3>
+        <p>{serviço.description}</p>
+        <p>{`R$ ${serviço.price}`}</p>
+        <p>{new Date(serviço.dueDate).toLocaleDateString()}</p>
+        <FormControl className="select">
+          <InputLabel id="pagamento-label">Forma De Pagamento</InputLabel>
+          <Select
+            variant="outlined"
+            labelId="pagamento-label"
+            name="paymentMethods"
+            label="Forma De Pagamento"
+            value={this.state.paymentMethod[index]}
+            onChange={(pagamento) => this.mudarPagamento(index, pagamento)}
+          >
+            <MenuItem disabled value="">
+              <em>Forma De Pagemnto</em>
+            </MenuItem>
+            {serviço.paymentMethods.map((paymentMethod) => (
+              <MenuItem key={paymentMethod} value={paymentMethod}>
+                {paymentMethod}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <Button
+          variant="contained"
+          className="center"
+          onClick={() => this.desistir(serviço.id)}
+        >
+          Desistir
+        </Button>
+      </Proposta>
     ));
 
+  render() {
     return (
-      <div>
-        <BodyCarrinho>
-          <header />
-          {mostraCarrinho}
-
-          <CardPagamento>
-            <h3>Método de Pagamento</h3>
-            <select>
-              <option>Escolha o método:</option>
-              <option>Cartão Débito</option>
-              <option>Boleto</option>
-              <option>Pix</option>
-              <option>Cartão Crédito</option>
-            </select>
-            <br />
-            <h3>Valor Total</h3>
-            <p>R$ 0,00</p>
-            <Desistir>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={this.contratou}
-              >
-                Contratar
-              </Button>
-            </Desistir>
-          </CardPagamento>
-        </BodyCarrinho>
-
+      <main>
+        <Propostas>{this.carrinhoDosServiços()}</Propostas>
+        <Total>
+          <h3>Valor Total</h3>
+          <p>
+            {`R$ ${this.state.carrinho
+              .reduce((total, serviço) => total += serviço.price, 0)}`}
+          </p>
+        </Total>
         <Desistir>
-          <Button variant="contained" color="secundary" onClick={this.desistir}>
+          <Button variant="contained" onClick={this.desistirTudo}>
             Desistir das propostas
           </Button>
         </Desistir>
-
         <Voltar>
-          <Button
-            className="Prestador"
-            variant="contained"
-            color="primary"
-            onClick={this.props.voltar}
-          >
-            Voltar
+          <Button variant="contained" onClick={this.props.voltar}>
+            Voltar Para As Propostas
           </Button>
         </Voltar>
         <ToastContainer
@@ -147,7 +161,7 @@ export default class Carrinho extends Component {
           draggable
           pauseOnHover
         />
-      </div>
+      </main>
     );
   }
 }
