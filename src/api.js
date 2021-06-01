@@ -14,3 +14,11 @@ export function criarServiço(body) {
 export function removerServiço(id) {
   return axios.delete(`${url}/${id}`, { headers });
 }
+
+export async function alterarContratação(id, contratado) {
+  return await axios.post(`${url}/${id}`, { taken: !contratado }, { headers });
+}
+
+export async function contratarServiço(id) {
+  return await axios.post(`${url}/${id}`, { taken: true }, { headers });
+}

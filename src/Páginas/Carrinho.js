@@ -6,6 +6,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import { ToastContainer, toast } from "react-toastify";
+import { contratarServiço } from "../api";
 
 const Propostas = styled.section`
   display: flex;
@@ -39,6 +40,8 @@ const Total = styled.section`
 
 const Voltar = styled.section``;
 
+const Contratar = styled.section``;
+
 const Desistir = styled.section``;
 
 export default class Carrinho extends Component {
@@ -60,8 +63,28 @@ export default class Carrinho extends Component {
     localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho));
   }
 
-  contratou = () => {
-    toast.dark("Serviços contratados com sucesso 🐱‍👤");
+  contratou = async () => {
+    let erro = false;
+    let carrinhoFinal = [ ...this.state.carrinho ];
+    if (carrinhoFinal.lenght <= 0)
+      return toast.dark("Não a serviço para ser contratado");
+
+    await Promise.all(this.state.carrinho.map(async (serviço) => {
+      try {
+        await contratarServiço(serviço.id);
+        carrinhoFinal = carrinhoFinal
+          .filter((serviçoFinal) => serviçoFinal.id !== serviço.id);
+      } catch (error) {
+        erro = true;
+        alert(`Não foi possível contratar o serviço\nErro:${JSON.stringify(error)}`);
+      }
+    }));
+
+    if (!erro)
+      toast.dark("Serviços contratados com sucesso 🐱‍👤");
+
+    this.setState({ carrinho: carrinhoFinal });
+    localStorage.setItem("carrinho", JSON.stringify(carrinhoFinal));
   };
 
   mudarPagamento = (index, event) => {
@@ -145,6 +168,11 @@ export default class Carrinho extends Component {
             Desistir das propostas
           </Button>
         </Desistir>
+        <Contratar>
+          <Button variant="contained" onClick={this.contratou}>
+            Contratar As Propostas
+          </Button>
+        </Contratar>
         <Voltar>
           <Button variant="contained" onClick={this.props.voltar}>
             Voltar Para As Propostas

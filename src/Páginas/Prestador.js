@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import FormPrestador from "../components/FormPrestador";
-import { listarServiços, removerServiço } from "../api";
+import { alterarContratação, listarServiços, removerServiço } from "../api";
 
 const Main = styled.main`
   display: grid;
@@ -20,7 +20,6 @@ const Voltar = styled.section`
 
 const Serviço = styled.section`
   display: flex;
-  text-align: center;
   justify-content: space-between;
   border-radius: 18px;
   border-bottom: 2px solid;
@@ -64,17 +63,37 @@ export default class Prestador extends Component {
         });
   };
 
+  alterarContratação = (id, contratado) => {
+    alterarContratação(id, contratado)
+      .then(() => {
+        this.listarServiços();
+        alert("Alteração complentada com sucesso");
+      })
+      .catch((erro) => {
+        alert(`Erro ao alterar a contratação os serviços\nErro: ${erro}`);
+      });
+  }
+
   render() {
     const mostraServiços = this.state.serviços.map((serviço) => (
       <Serviço key={serviço.id}>
         <p>{serviço.title}</p>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => this.removerServiço(serviço.id)}
-        >
-          Remover
-        </Button>
+        <div>
+          <Button
+            variant="contained"
+            color={serviço.taken ? "secondary" : "primary"}
+            onClick={() => this.alterarContratação(serviço.id, serviço.taken)}
+          >
+            {serviço.taken ? "Contratado" : "Não Contratado"}
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => this.removerServiço(serviço.id)}
+          >
+            Remover
+          </Button>
+        </div>
       </Serviço>
     ));
 
